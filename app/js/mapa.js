@@ -1,4 +1,4 @@
-
+/*
 function initMap() {
 
 	var myLatLng = {lat: -15.779, lng: -47.929};
@@ -14,4 +14,4 @@ function initMap() {
 	    title: 'Brasilia'
 	  });
 
-}
+}*/
