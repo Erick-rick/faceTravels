@@ -122,7 +122,7 @@
 
     <!-- MAPA -->
                   <div style=" height: 400px" class="row">
-                     <div my-map="" data-zoom="mapaCtrl.zoom" data-cidades="mapaCtrl.listaCidades"></div>
+                     <div my-map="" data-zoom="mapaCtrl.zoom" data-enderecos="mapaCtrl.enderecos"></div>
                   </div>
                </div>
                <div class="w3-third">
@@ -155,7 +155,7 @@
                   <br>
                   <h5>Lugares Marcados</h5>
                   <table class="w3-table w3-striped w3-white">
-                     <tr ng-repeat="(key, c) in mapaCtrl.listaCidades">                       
+                     <tr ng-repeat="(key, c) in mapaCtrl.enderecos">                       
                         <td>{{key + 1}}</td>
                         <td class="w3-center">{{c.nome}}</td>
                         <td>

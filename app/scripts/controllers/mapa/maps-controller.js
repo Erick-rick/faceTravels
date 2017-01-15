@@ -23,27 +23,30 @@ angular.module('myApp').controller('mapaController', function() {
 		}
 	}
 
-	self.listaCidades = [];
+	self.enderecos = [];
 
 	var brasilia = {
-		nome: 'Brasilia',
-		coordenadas: {lat: -15.779, lng: -47.929}
+		nome: 'Brasilia - CE, Brasil',
+		location: {lat: -15.779, lng: -47.929}
 	}
 
 	var fortaleza = {
-		nome: 'Fortaleza',
-		coordenadas: {lat:  -3.717, lng: -38.543}
+		nome: 'Fortaleza - CE, Brasil',
+		location: {lat:  -3.717, lng: -38.543}
 	}
 
-	self.listaCidades.push(brasilia);
-	self.listaCidades.push(fortaleza);
+	self.enderecos.push(brasilia);
+	self.enderecos.push(fortaleza);
 
 	self.addLugar = function(){
 		
 		if(self.locais){
-			var cidade = { nome: self.locais.formatted_address};
+			var cidade = { 
+				nome: self.locais.formatted_address,
+				location: self.locais.geometry.location
+			};
 			self.locais = undefined;
-			self.listaCidades.push(cidade);
+			self.enderecos.push(cidade);
 		}
 		
 	}

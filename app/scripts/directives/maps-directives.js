@@ -6,7 +6,7 @@ angular.module('myApp', [])
     var link = function(scope, element, attrs) {
         var map, infoWindow;
         var markers = [];
-        var cidades = [];
+        var enderecos = [];
 
         var myLatLng = {lat: -15.779, lng: -47.929};// Cidade de Brasilia
         
@@ -55,18 +55,29 @@ angular.module('myApp', [])
         // Inicializa o mapa
         initMap();
         
-        setMarker(map, myLatLng, 'Brasilia', 'Centro do Brasil');
-        setMarker(map, {lat:  -3.717, lng: -38.543}, 'Fortaleza', 'Cidade do Brasil');
+        /*setMarker(map, myLatLng, 'Brasilia', 'Centro do Brasil');
+        setMarker(map, {lat:  -3.717, lng: -38.543}, 'Fortaleza', 'Cidade do Brasil');*/
+
+
+        function add(){
+            if(scope.enderecos){
+                angular.forEach(scope.enderecos, function(cidade, key) {
+                    setMarker(map, cidade.location, cidade.nome, 'Cidade do Brasil');
+                });
+            }
+        }      
         
         //Alteracao no Zoom da tela
         scope.$watch('zoom', function(value) {            
-            map.setZoom(value)
+            map.setZoom(value);
+            add();
         });
 
-        //Alteracao na lista de cidades da tela
-        scope.$watch('cidades', function(lista) {            
-            cidades = lista;//map.setZoom(value)
-        });
+        scope.$watch('enderecos', function(value) { 
+            add();
+        }, true);
+
+        add();
          
     };
     
@@ -76,7 +87,7 @@ angular.module('myApp', [])
         replace: true,
         scope: {
             zoom: '=zoom',
-            cidades: '=cidades'
+            enderecos: '=enderecos'
         },
         link: link
     };
