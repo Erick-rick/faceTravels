@@ -5,6 +5,7 @@ angular.module('myApp', [])
     var link = function(scope, element, attrs) {
         var map, infoWindow;
         var markers = [];
+        var cidades = [];
 
         var myLatLng = {lat: -15.779, lng: -47.929};// Cidade de Brasilia
         
@@ -54,10 +55,16 @@ angular.module('myApp', [])
         initMap();
         
         setMarker(map, myLatLng, 'Brasilia', 'Centro do Brasil');
+        setMarker(map, {lat:  -3.717, lng: -38.543}, 'Fortaleza', 'Cidade do Brasil');
         
         //Alteracao no Zoom da tela
         scope.$watch('zoom', function(value) {            
             map.setZoom(value)
+        });
+
+        //Alteracao na lista de cidades da tela
+        scope.$watch('cidades', function(lista) {            
+            cidades = lista;//map.setZoom(value)
         });
          
     };
@@ -68,6 +75,7 @@ angular.module('myApp', [])
         replace: true,
         scope: {
             zoom: '=zoom',
+            cidades: '=cidades'
         },
         link: link
     };

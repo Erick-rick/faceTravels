@@ -121,7 +121,7 @@
 
          <!-- MAPA -->
                   <div style=" height: 400px" class="row">
-                     <div my-map="" data-zoom="mapaCtrl.zoom"></div>
+                     <div my-map="" data-zoom="mapaCtrl.zoom" data-cidades="mapaCtrl.listaCidades"></div>
                   </div>
                </div>
                <div class="w3-third">
@@ -130,7 +130,7 @@
                         <h5>Adicionar Ponto </h5>
                      </div>
                      <label>Cidade {{mapaCtrl.cidade}}</label>
-                     <input class="w3-input" type="text" name="cidade" ng-model="mapaCtrl.cidade">
+                     <input id="pac-input" class="w3-input" type="text" name="cidade" ng-model="mapaCtrl.cidade">
 
                      <div class="w3-twothird w3-btn-group w3-margin-top">
                        <button class="w3-btn w3-teal" ng-click="mapaCtrl.addZoom()">
@@ -142,7 +142,7 @@
                         <label>&emsp; {{mapaCtrl.zoom}} Vezes</label>
                      </div>
                      <div class="w3-third w3-margin-top">
-                        <button ng-click="mapaCtrl.addLugar( mapaCtrl.cidade )" class=" w3-right w3-btn w3-ripple w3-red">Adicionar</button>
+                        <button ng-click="mapaCtrl.addLugar( mapaCtrl.cidade )" class="w3-round-xlarge w3-right w3-btn w3-ripple w3-red">Adicionar</button>
                      </div>
                   </form>
                   <br>
@@ -150,8 +150,12 @@
                   <table class="w3-table w3-striped w3-white">
                      <tr ng-repeat="(key, c) in mapaCtrl.listaCidades">                       
                         <td>{{key + 1}}</td>
-                        <td>{{c.nome}}</td>
-                         <td><i class="fa  fa-street-view"></i></td>
+                        <td class="w3-center">{{c.nome}}</td>
+                        <td>
+                           <button class="w3-btn w3-white w3-border w3-border-green w3-round-xlarge w3-right">
+                              <i class="fa fa-street-view"></i>
+                           </button>
+                        </td>
                      </tr>
                   </table>
                </div>
