@@ -2,6 +2,11 @@ angular.module('myApp').controller('mapaController', function() {
 	var self = this;
 
 	self.locais = undefined;
+	self.enderecos = [];
+	self.centro = {
+		lat: -15.779, 
+		lng: -47.929
+	}
 
 	self.zoom = 4;
 
@@ -23,7 +28,18 @@ angular.module('myApp').controller('mapaController', function() {
 		}
 	}
 
-	self.enderecos = [];
+	self.centralizar = function(key){
+		if(self.enderecos[key]){
+			self.centro = self.enderecos[key].location;
+		}
+		else{
+			self.centro = {
+				lat: -15.779, 
+				lng: -47.929
+			}
+		}
+		
+	}
 
 	var brasilia = {
 		nome: 'Brasilia - CE, Brasil',

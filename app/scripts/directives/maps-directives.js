@@ -51,13 +51,6 @@ angular.module('myApp', [])
                 infoWindow.open(map, marker);
             });
         }
-        
-        // Inicializa o mapa
-        initMap();
-        
-        /*setMarker(map, myLatLng, 'Brasilia', 'Centro do Brasil');
-        setMarker(map, {lat:  -3.717, lng: -38.543}, 'Fortaleza', 'Cidade do Brasil');*/
-
 
         function add(){
             if(scope.enderecos){
@@ -70,14 +63,25 @@ angular.module('myApp', [])
         //Alteracao no Zoom da tela
         scope.$watch('zoom', function(value) {            
             map.setZoom(value);
-            add();
-        });
+        }, true);
+
+
+        //Alteracao no Centro da tela
+        scope.$watch('centro', function(value) {            
+            map.setCenter(value);
+        }, true);
+
 
         scope.$watch('enderecos', function(value) { 
             add();
         }, true);
 
+
+        // Inicializa o mapa
+        initMap();
+        
         add();
+
          
     };
     
@@ -87,7 +91,8 @@ angular.module('myApp', [])
         replace: true,
         scope: {
             zoom: '=zoom',
-            enderecos: '=enderecos'
+            enderecos: '=enderecos',
+            centro: '=centro'
         },
         link: link
     };
