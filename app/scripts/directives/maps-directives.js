@@ -1,6 +1,7 @@
 
 angular.module('myApp', [])
 
+//Directiva para inicializar o mapa
 .directive('myMap', function() {
     var link = function(scope, element, attrs) {
         var map, infoWindow;
@@ -80,40 +81,8 @@ angular.module('myApp', [])
         link: link
     };
 })
-/*
-.directive('searchMap', function() {
-    var link = function(scope, element, attrs) {
 
-        function initAutocomplete() {
-            var searchBox = new google.maps.places.SearchBox(element[0]);
-
-            // Listen for the event fired when the user selects a prediction and retrieve
-            // more details for that place.
-            searchBox.addListener('places_changed', function() {
-                var places = searchBox.getPlaces();
-
-                //Adiciona os locais 
-                scope.locais = places;
-
-                if (places.length == 0) {
-                  return;
-                }
-            });
-        }
-        
-        initAutocomplete() ;
-    };
-    
-    return {
-        restrict: 'A',
-        replace: true,
-        link: link,
-        scope: {
-            locais: "=locais"
-        }
-    };
-})*/
-
+//Directive para pesquisar enderecos
 .directive('searchMap', function() {
     var link = function(scope, element, attrs) {
 
@@ -131,16 +100,11 @@ angular.module('myApp', [])
                 }
 
                 //Adiciona os locais 
-                //console.log(element[0].value);
                 scope.locais = place;
+                scope.$apply();
 
-            });
-
-            autocomplete.addListener('blur', function() { 
-                console.log("lost"); 
             });
         }
-        
         initAutocomplete() ;
     };
     
