@@ -11,7 +11,7 @@ angular.module('myApp', [])
         // map configuracoes
         var mapOptions = {
             center: myLatLng,
-            zoom: 4,
+            zoom: scope.zoom, // Zoom Definido Pelo usuario
             //mapTypeId: google.maps.MapTypeId.ROADMAP,
             scrollwheel: false
         };
@@ -54,12 +54,21 @@ angular.module('myApp', [])
         initMap();
         
         setMarker(map, myLatLng, 'Brasilia', 'Centro do Brasil');
+        
+        //Alteracao no Zoom da tela
+        scope.$watch('zoom', function(value) {            
+            map.setZoom(value)
+        });
+         
     };
     
     return {
         restrict: 'A',
         template: '<div id="gmaps"></div>',
         replace: true,
+        scope: {
+            zoom: '=zoom',
+        },
         link: link
     };
 });
