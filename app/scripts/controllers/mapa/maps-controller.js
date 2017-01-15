@@ -1,7 +1,15 @@
 angular.module('myApp').controller('mapaController', function() {
 	var self = this;
 
+	self.locais = undefined;
+
 	self.zoom = 4;
+
+	self.disable = function(){
+		if(self.locais)
+			return false;
+		return true;
+	}
 
 	self.addZoom = function() {
 		if(self.zoom < 20){
@@ -30,11 +38,14 @@ angular.module('myApp').controller('mapaController', function() {
 	self.listaCidades.push(brasilia);
 	self.listaCidades.push(fortaleza);
 
-	self.addLugar = function(valor){
+	self.addLugar = function(){
 		
-		var cidade = { nome: valor};
-
-		self.listaCidades.push(cidade);
+		if(self.locais){
+			var cidade = { nome: self.locais.formatted_address};
+			self.locais = undefined;
+			self.listaCidades.push(cidade);
+		}
+		
 	}
 
 });

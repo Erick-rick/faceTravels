@@ -80,27 +80,24 @@ angular.module('myApp', [])
         link: link
     };
 })
-
+/*
 .directive('searchMap', function() {
     var link = function(scope, element, attrs) {
 
         function initAutocomplete() {
             var searchBox = new google.maps.places.SearchBox(element[0]);
 
-            var markers = [];
-
             // Listen for the event fired when the user selects a prediction and retrieve
             // more details for that place.
             searchBox.addListener('places_changed', function() {
                 var places = searchBox.getPlaces();
 
+                //Adiciona os locais 
+                scope.locais = places;
+
                 if (places.length == 0) {
                   return;
                 }
-                // Clear out the old markers.
-                markers.forEach(function(marker) {
-                    marker.setMap(null);
-                });
             });
         }
         
@@ -111,6 +108,49 @@ angular.module('myApp', [])
         restrict: 'A',
         replace: true,
         link: link,
+        scope: {
+            locais: "=locais"
+        }
+    };
+})*/
+
+.directive('searchMap', function() {
+    var link = function(scope, element, attrs) {
+
+        function initAutocomplete() {
+            var autocomplete = new google.maps.places.Autocomplete(element[0]);
+
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            autocomplete.addListener('place_changed', function() {
+                var place = autocomplete.getPlace();
+
+                if (!place.geometry) {
+                  console.log("Autocomplete's returned place contains no geometry");
+                  return;
+                }
+
+                //Adiciona os locais 
+                //console.log(element[0].value);
+                scope.locais = place;
+
+            });
+
+            autocomplete.addListener('blur', function() { 
+                console.log("lost"); 
+            });
+        }
+        
+        initAutocomplete() ;
+    };
+    
+    return {
+        restrict: 'A',
+        replace: true,
+        link: link,
+        scope: {
+            locais: "=locais"
+        }
     };
 });
 
