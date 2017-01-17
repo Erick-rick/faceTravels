@@ -55,7 +55,7 @@ angular.module('myApp', [])
         function add(){
             if(scope.enderecos){
                 angular.forEach(scope.enderecos, function(cidade, key) {
-                    setMarker(map, cidade.location, cidade.nome, 'Cidade do Brasil');
+                    setMarker(map, cidade.location, cidade.nome, cidade.comentario);
                 });
             }
         }      

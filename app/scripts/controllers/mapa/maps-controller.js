@@ -43,25 +43,31 @@ angular.module('myApp').controller('mapaController', function() {
 
 	var brasilia = {
 		nome: 'Brasilia - CE, Brasil',
-		location: {lat: -15.779, lng: -47.929}
+		location: {lat: -15.779, lng: -47.929},
+		comentario: 'Prefiro Fortaleza'
 	}
 
 	var fortaleza = {
 		nome: 'Fortaleza - CE, Brasil',
-		location: {lat:  -3.717, lng: -38.543}
+		location: {lat:  -3.717, lng: -38.543},
+		comentario: 'Melhor cidade'
 	}
 
 	self.enderecos.push(brasilia);
 	self.enderecos.push(fortaleza);
 
 	self.addLugar = function(){
+
+		document.getElementById('id01').style.display ='none';// Fecha o modal
 		
 		if(self.locais){
 			var cidade = { 
 				nome: self.locais.formatted_address,
-				location: self.locais.geometry.location
+				location: self.locais.geometry.location,
+				comentario: self.comentario
 			};
 			self.locais = undefined;
+			self.comentario = '';
 			self.enderecos.push(cidade);
 		}
 		
