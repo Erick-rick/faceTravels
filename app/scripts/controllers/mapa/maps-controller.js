@@ -53,8 +53,15 @@ angular.module('myApp').controller('mapaController', function() {
 		comentario: 'Melhor cidade'
 	}
 
+	var saoPaulo = {
+		nome: 'São Paulo, SP, Brasil',
+		location: {lat:  -23.550, lng: -46.633},
+		comentario: 'Muito Grande'
+	}
+
 	self.enderecos.push(brasilia);
 	self.enderecos.push(fortaleza);
+	self.enderecos.push(saoPaulo);
 
 	self.addLugar = function(){
 
