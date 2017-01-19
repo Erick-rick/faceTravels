@@ -66,52 +66,30 @@
       <!-- !PAGE CONTENT! -->
       <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
-         <!-- Header -->
-         <header class="w3-container" style="padding-top:22px">
+      <!-- Header -->
+         <header class="w3-container" style="padding-top:10px">
             <h5><b><i class="fa fa-dashboard"></i> Mapa do Brasil</b></h5>
          </header>
-         <div class="w3-row-padding w3-margin-bottom">
-            <div class="w3-quarter">
-               <div class="w3-container w3-red w3-padding-16">
-                  <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
-                  <div class="w3-right">
-                     <h3>52</h3>
+
+         <div class="w3-container w3-section">
+            <div class="w3-row-padding" style="margin: 0px -7px;">
+               <div class="slideshow-container">
+                  <div class="mySlides fade">
+                     <img src="img/nature.png" style="width:100%">
+                     <div class="text">Florestas</div>
                   </div>
-                  <div class="w3-clear"></div>
-                  <h4>Mensagens</h4>
-               </div>
-            </div>
-            <div class="w3-quarter">
-               <div class="w3-container w3-blue w3-padding-16">
-                  <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
-                  <div class="w3-right">
-                     <h3>99</h3>
+                  <div class="mySlides fade">
+                     <img src="img/water.png" style="width:100%">
+                     <div class="text">Montanhas</div>
                   </div>
-                  <div class="w3-clear"></div>
-                  <h4>Visitas</h4>
-               </div>
-            </div>
-            <div class="w3-quarter">
-               <div class="w3-container w3-teal w3-padding-16">
-                  <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
-                  <div class="w3-right">
-                     <h3>23</h3>
+                  <div class="mySlides fade">
+                     <img src="img/ice.png" style="width:100%">
+                     <div class="text">Geleiras</div>
                   </div>
-                  <div class="w3-clear"></div>
-                  <h4>Shares</h4>
-               </div>
-            </div>
-            <div class="w3-quarter">
-               <div class="w3-container w3-orange w3-text-white w3-padding-16">
-                  <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-                  <div class="w3-right">
-                     <h3>50</h3>
-                  </div>
-                  <div class="w3-clear"></div>
-                  <h4>Esquemas</h4>
                </div>
             </div>
          </div>
+
          <div class="w3-container w3-section">
             <div class="w3-row-padding" style="margin:0 -16px">
                <div class="w3-twothird">
@@ -119,7 +97,7 @@
 
 
             <!-- MAPA -->
-                  <div style=" height: 400px" class="row">
+                  <div style=" height: 420px" class="row">
                      <div my-map="" 
                         data-zoom="mapaCtrl.zoom" 
                         data-enderecos="mapaCtrl.enderecos"
@@ -147,7 +125,7 @@
                      </div>
                   </div>
                   <div class = "w3-container">
-                     <h5 class = "w3-margin-top h-well w3-red" >Lugares Marcados</h5>
+                     <h5 class = "w3-margin-top h-well w3-red" >Top 10 Marcados</h5>
                      <input class="w3-input w3-margin-bottom" placeholder="Digite para filtrar" type="text" name ="filtro">
                      <table class="w3-table w3-striped w3-white">
                         <tr ng-repeat="(key, c) in mapaCtrl.enderecos">
@@ -211,6 +189,7 @@
 
       <script src="js/w3.js"></script>
       <!--  <script src="js/mapa.js"></script>-->
+
       <!-- CONTROLLERS -->
       <script type="text/javascript" src="scripts/controllers/mapa/maps-controller.js"></script>
    </body>
