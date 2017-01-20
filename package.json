@@ -1,0 +1,27 @@
+{
+  "name": "engsoft",
+  "version": "1.0.0",
+  "description": "Projeto de Eng Soft",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NonatoDias/engSoft.git"
+  },
+  "author": "Nonato",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NonatoDias/engSoft/issues"
+  },
+  "homepage": "https://github.com/NonatoDias/engSoft#readme",
+  "dependencies": {
+    "bower": "^1.8.0",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "bower": "^1.8.0"
+  }
+}
