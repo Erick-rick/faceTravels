@@ -3,11 +3,21 @@ html,body,h1,h2,h3,h4,h5 {
 	font-family: "Raleway", sans-serif;
 }
 
-
 .w3-theme-d2 {
     color: #fff !important;
     background-color: #4d636f !important;
 }
+
+.w3-theme-d3 {
+    color: #fff !important;
+    background-color: #435761 !important;
+}
+
+.w3-theme-d5 {
+    color: #fff !important;
+    background-color: #303e45 !important;
+}
+
 .container {
   position: relative;
   width: 50%;
