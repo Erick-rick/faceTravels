@@ -25,23 +25,46 @@
    <script src="scripts/directives/maps-directives.js"></script>
    <body ng-app="myApp" ng-controller="mapaController as mapaCtrl"  class="w3-light-grey">
 
-      <!-- Top container -->
+      <!-- Top container 
       <div class="w3-container w3-top w3-black w3-large w3-padding" style="z-index:4">
          <button class="w3-btn w3-hide-large w3-padding-0 w3-hover-text-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
          <span class="w3-right">Projeto de Engenharia de Software</span>
+      </div>-->
+
+      <!-- Navbar -->
+      <div class="w3-top ">
+         <ul class="w3-navbar w3-theme-d2 w3-left-align w3-large">
+            <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+               <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+            </li>
+            <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a></li>
+            <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a></li>
+            <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a></li>
+            <li class="w3-hide-small w3-dropdown-hover">
+               <a href="#" class="w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></a>     
+               <div class="w3-dropdown-content w3-white w3-card-4">
+                  <a href="#">One new friend request</a>
+                  <a href="#">John Doe posted on your wall</a>
+                  <a href="#">Jane likes your post</a>
+               </div>
+            </li>
+            <li class="w3-right"><a href="#" class="w3-padding-large w3-theme-d4" onclick="w3_open()" ><i class="fa fa-bars"></i>  Menu</a></li>
+         </ul>
       </div>
-      <!-- Sidenav/menu -->
-      <nav class="w3-sidenav w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidenav">
+
+
+      <!-- Sidenav/menu 
+      <nav class="w3-sidenav w3-collapse w3-white w3-animate-left" style="display: none !important; z-index:3;width:300px;" id="mySidenav">
          <br>
          <div class="w3-container w3-row">
-            <div class="w3-col s4">
-               <img src="img/brasil.png" class="w3-circle w3-margin-right" style="width:46px">
-            </div>
-            <div class="w3-col s8">
-               <span>Bem Vindo, <strong>Aluno</strong></span><br>
-               <a href="#" class="w3-hover-none w3-hover-text-red w3-show-inline-block"><i class="fa fa-envelope"></i></a>
-               <a href="#" class="w3-hover-none w3-hover-text-green w3-show-inline-block"><i class="fa fa-user"></i></a>
-               <a href="#" class="w3-hover-none w3-hover-text-blue w3-show-inline-block"><i class="fa fa-cog"></i></a>
+             Profile --><!--
+            <div class="w3-card-2 w3-round w3-white">
+               <div class="w3-container">
+                  <h4 class="w3-center">My Profile</h4>
+                  <p class="w3-center"><img src="http://www.w3schools.com/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+                  <hr>
+                  <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
+               </div>
             </div>
          </div>
          <hr>
@@ -59,12 +82,58 @@
          <a href="#" class="w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
          <a href="#" class="w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
       </nav>
-      <!-- Overlay effect when opening sidenav on small screens -->
-      <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+      Overlay effect when opening sidenav on small screens
 
+   <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>-->
+      <br>
+      <div class="w3-col s3">
+         <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
+            <br>
+            <img src="http://www.w3schools.com/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+            <span class="w3-right w3-opacity">1 min</span>
+            <h4>John Doe</h4>
+            <br>
+            <hr class="w3-clear">
+            <p>Gostaria de enfatizar que o acompanhamento das preferências de consumo acarreta um processo de reformulação e modernização das direções preferenciais no sentido do progresso.</p>
+            <div class="w3-row-padding" style="margin:0 -16px">
+               <div class="w3-half">
+                  <img src="http://www.w3schools.com/w3images/lights.jpg" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
+               </div>
+               <div class="w3-half">
+                  <img src="http://www.w3schools.com/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
+               </div>
+            </div>
+            <button type="button" class="w3-btn w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+            <button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+         </div>
+         <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
+            <br>
+            <img src="http://www.w3schools.com/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+            <span class="w3-right w3-opacity">16 min</span>
+            <h4>Jane Doe</h4>
+            <br>
+            <hr class="w3-clear">
+            <p>O que temos que ter sempre em mente é que a valorização de fatores subjetivos promove a alavancagem dos procedimentos normalmente adotados.</p>
+            <button type="button" class="w3-btn w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+            <button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+         </div>
+         <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
+            <br>
+            <img src="http://www.w3schools.com/w3images/avatar6.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+            <span class="w3-right w3-opacity">32 min</span>
+            <h4>Angie Jane</h4>
+            <br>
+            <hr class="w3-clear">
+            <p>Have you seen this?</p>
+            <img src="http://www.w3schools.com/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+            <p>É claro que o acompanhamento das preferências de consumo assume importantes posições no estabelecimento do fluxo de informações.</p>
+            <button type="button" class="w3-btn w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+            <button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+         </div>
+      </div>
 
       <!-- !PAGE CONTENT! -->
-      <div class="w3-main" style="margin-left:300px;margin-top:43px;">
+      <div class="w3-col s9">
 
          <div class="w3-container w3-section">
             <div class="w3-row-padding" style="margin: 0px -7px;">

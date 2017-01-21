@@ -4,7 +4,10 @@ html,body,h1,h2,h3,h4,h5 {
 }
 
 
-
+.w3-theme-d2 {
+    color: #fff !important;
+    background-color: #4d636f !important;
+}
 .container {
   position: relative;
   width: 50%;
