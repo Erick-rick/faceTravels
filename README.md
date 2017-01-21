@@ -1,4 +1,6 @@
 # engSoft
 Projeto de Eng Soft
 
-Arquivo frontend do trabalho de Engenharia de Software, utilizando Angularjs e Google maps API.
+Sistema utilizando Angularjs, Google maps API e servidor Nodejs. Objetivos: Desenvolver aplicação que utilize mapas e permita interação com usuários de um sistema.
+
+Neste Repositório está o arquivo Frontend do Sistema.
