@@ -1,5 +1,5 @@
 
-angular.module('myApp', [])
+angular.module('mapApp')
 
 //Directiva para inicializar o mapa
 .directive('myMap', function() {

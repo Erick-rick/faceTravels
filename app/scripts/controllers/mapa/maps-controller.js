@@ -1,4 +1,4 @@
-angular.module('myApp').controller('mapaController', function() {
+angular.module('mapApp').controller('mapaController', function() {
 	var self = this;
 
 	self.locais = undefined;
