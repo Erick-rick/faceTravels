@@ -3,19 +3,23 @@ var myApp = angular.module('mapApp', ['ui.router'])
 .config(["$stateProvider", "$urlRouterProvider",
     function($stateProvider, $urlRouterProvider) {
 
-        var helloState = {
-            name: 'hello',
-            url: '/hello',
-            template: '<h3>hello world!</h3>'
-        }
+         $stateProvider
+            .state('login', {
+                url: '/login',
+                templateUrl: 'views/login/login.html'
+            })
 
-        var aboutState = {
-            name: 'about',
-            url: '/about',
-            template: '<h3>Its the UI-Router hello world app!</h3>'
-        }
+            .state('home', {
+                url: '/home',
+                templateUrl: 'views/home/home.html',
+                controller: 'homeController as hc'
+            })
 
-        $stateProvider.state(helloState);
-        $stateProvider.state(aboutState);
+            .state('myProfile', {
+                url: '/myProfile',
+                templateUrl: 'views/user/myProfile.html',
+            });
+
+         $urlRouterProvider.otherwise('/home');
     }
 ]);
