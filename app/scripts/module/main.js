@@ -18,6 +18,7 @@ var myApp = angular.module('mapApp', ['ui.router'])
             .state('myProfile', {
                 url: '/myProfile',
                 templateUrl: 'views/user/myProfile.html',
+                controller: 'myProfileController as mpc'
             });
 
          $urlRouterProvider.otherwise('/home');
