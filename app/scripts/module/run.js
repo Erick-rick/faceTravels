@@ -4,22 +4,14 @@ angular.module('mapApp').run(['$rootScope', '$window',
   $rootScope.user = {};
 
    function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
     if (response.status === 'connected') {
-      // Logged into your app and Facebook.
+      getUser();
       console.log("connected in fb");
+
     } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
       console.log("not_authorized in fb");
+
     } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
       console.log("not logged in fb");
       
     }
@@ -40,27 +32,17 @@ angular.module('mapApp').run(['$rootScope', '$window',
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
-
   };
 
-  (function(d){
-    // load the Facebook javascript SDK
 
-    var js,
-    id = 'facebook-jssdk',
-    ref = d.getElementsByTagName('script')[0];
+var getUser = function () {
+  FB.api('/me', 
+    {fields: "id,cover, age_range, locale, about,picture,context,email,first_name, name,"+
+        "last_name,gender,link,location,timezone"},
 
-    if (d.getElementById(id)) {
-      return;
-    }
-
-    js = d.createElement('script');
-    js.id = id;
-    js.async = true;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-
-    ref.parentNode.insertBefore(js, ref);
-
-  }(document));
+    function(data) {
+      $rootScope.user = data;
+    });
+}
 
 }]);

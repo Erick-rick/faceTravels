@@ -1,12 +1,12 @@
-angular.module('mapApp').controller('myProfileController', function(facebookService) {
+angular.module('mapApp').controller('myProfileController', function(facebookService, $rootScope) {
 
 	var self = this;
 
 	self.getMyLastName = function() {
-		   facebookService.getMyLastName() 
-		     .then(function(response) {
-		       console.log(response.last_name);
-		     }
-		   );
-		};
+		self.usuario = $rootScope.user;
+		console.log(self.usuario);
+
+		// Teste
+		document.getElementById('foto').innerHTML = "<img src='"+self.usuario.picture.data.url+"'>"
+	}
 });

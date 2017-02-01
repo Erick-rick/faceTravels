@@ -1,16 +1,14 @@
-<!--<fb:login-button  size="large" scope="public_profile,email, user_friends" onlogin="checkLoginState();">Conectar
-</fb:login-button>-->
+<fb:login-button  size="large" scope="public_profile,email, user_friends" onlogin="checkLoginState();">Conectar
+</fb:login-button>
 <br>
 <br>
 
-<div id="fb-root"></div>
-
 <br>
 
-<button type="button" ng-click=mpc.getMyLastName()>Nome</button>
-
-
-<div class="col-sm-12" id="foto">
+<div class="col-sm-3">
+<button type="button" ng-click=mpc.getMyLastName()>atualiza</button>
+</div>
+<div class="col-sm-6" id="foto">
 </div>
 
 
@@ -21,19 +19,19 @@
    <table class="w3-table w3-striped w3-bordered">
     <tr>
       <th>Nome</th>
-      <td id="nome"></td>
+      <td id="nome">{{mpc.usuario.first_name}}</td>
     </tr>
     <tr>
       <th>sobrenome</th>
-      <td id="sobrenome"></td>
+      <td id="sobrenome">{{mpc.usuario.last_name}}</td>
     </tr>
     <tr>
       <th>email</th>
-      <td id="email"></td>
+      <td id="email">{{mpc.usuario.email}}</td>
     </tr>
     <tr>
       <th>sexo</th>
-      <td id="sexo"></td>
+      <td id="sexo">{{mpc.usuario.gender}}</td>
     </tr>
     <tr>
       <th>link</th>
@@ -41,7 +39,7 @@
     </tr>
     <tr>
       <th>idade</th>
-      <td id="idade"></td>
+      <td id="idade">{{mpc.usuario.age_range.max + " e " +mpc.usuario.age_range.min}}</td>
     </tr>
     <tr>
       <th>cidade</th>
