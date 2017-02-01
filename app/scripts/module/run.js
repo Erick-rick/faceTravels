@@ -2,7 +2,7 @@ angular.module('mapApp').run(['$rootScope', '$window',
   function($rootScope, $window) {
 
   $rootScope.user = {};
-
+/*
    function statusChangeCallback(response) {
     if (response.status === 'connected') {
       getUser();
@@ -44,5 +44,8 @@ var getUser = function () {
       $rootScope.user = data;
     });
 }
+*/
+
+ 
 
 }]);
