@@ -10,8 +10,7 @@ angular.module("mapApp").factory('facebookService', function($q, config) {
 	var initialize = function(){
 		FB.init({
 			appId      : config.facebookApiKey,
-			cookie     : true,  // enable cookies to allow the server to access 
-			                  // the session
+			cookie     : true,  // enable cookies to allow the server to accessthe session
 			xfbml      : true,  // parse social plugins on this page
 			version    : 'v2.8' // use graph api version 2.8
 		});

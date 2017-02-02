@@ -1,7 +1,7 @@
-angular.module('mapApp').controller('mapaController', function() {
+angular.module('mapApp').controller('mapaController', function(mapsService) {
 	var self = this;
 
-	self.locais = undefined;
+	/*self.locais = undefined;
 	self.enderecos = [];
 	self.centro = {
 		lat: -15.779, 
@@ -78,6 +78,7 @@ angular.module('mapApp').controller('mapaController', function() {
 			self.enderecos.push(cidade);
 		}
 		
-	}
+	}*/
+
 
 });

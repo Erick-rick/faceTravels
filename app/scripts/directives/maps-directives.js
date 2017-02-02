@@ -1,10 +1,11 @@
-
+/*
 angular.module('mapApp')
 
 //Directiva para inicializar o mapa
-.directive('myMap', function() {
+.directive('myMap', function(mapsService) {
+
     var link = function(scope, element, attrs) {
-        var map, infoWindow;
+        var map;
         var markers = [];
         var enderecos = [];
 
@@ -18,47 +19,26 @@ angular.module('mapApp')
             scrollwheel: false
         };
         
-        // inicializa o mapa
         function initMap() {
-            if (map === void 0) {
-                map = new google.maps.Map(element[0], mapOptions);
-            }
-        }    
-        
-        // coloca um marcador
-        function setMarker(map, position, title, content) {
-            var marker;
-            var markerOptions = {
-                position: position,
-                map: map,
-                title: title,
-                icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
-            };
-
-            marker = new google.maps.Marker(markerOptions);
-            markers.push(marker); // adiciona markers no array
-            
-            google.maps.event.addListener(marker, 'click', function () {
-                // Fecha a janela se nao for undefined
-                if (infoWindow !== void 0) {
-                    infoWindow.close();
-                }
-                // cria uma nova janela
-                var infoWindowOptions = {
-                    content: content
-                };
-                infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-                infoWindow.open(map, marker);
-            });
+            map = mapsService.initMap(element[0], mapOptions);
         }
 
         function add(){
             if(scope.enderecos){
                 angular.forEach(scope.enderecos, function(cidade, key) {
-                    setMarker(map, cidade.location, cidade.nome, cidade.comentario);
+                    //setMarker(map, cidade.location, cidade.nome, cidade.comentario);
+                    var markerOp = {
+                        position: cidade.location,
+                        map: map,
+                        content: cidade.comentario,
+                        title: cidade.nome,
+                        icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
+                    };
+                    markers.push(mapsService.addMarker(map,markerOp));
+
                 });
             }
-        }      
+        }        
         
         //Alteracao no Zoom da tela
         scope.$watch('zoom', function(value) {            
@@ -75,7 +55,6 @@ angular.module('mapApp')
         scope.$watch('enderecos', function(value) { 
             add();
         }, true);
-
 
         // Inicializa o mapa
         initMap();
@@ -134,3 +113,4 @@ angular.module('mapApp')
     };
 });
 
+*/
