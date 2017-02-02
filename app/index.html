@@ -28,8 +28,8 @@
       <!-- Services -->
       <script src="scripts/services/fbService.js" type="text/javascript"></script>
 
-      <!-- CONFIG 
-      <script src="scripts/config.js" type="text/javascript"></script>-->
+      <!-- CONFIG -->
+      <script src="scripts/config.js" type="text/javascript"></script>
 
       <!-- DIRECTIVES -->
       <script src="scripts/directives/maps-directives.js"></script>
@@ -55,7 +55,7 @@
                   <a href="#">Jane likes your post</a>
                </div>
             </li>
-            <li class="w3-hide-small w3-right"><a href="#" class="w3-padding-large w3-hover-white" title="My Account"><img src="http://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a></li>
+            <li class="w3-hide-small w3-right"><a ui-sref="myProfile" class="w3-padding-large w3-hover-white" title="My Account"><img ng-src="{{$root.usuario.largePicture.data.url}}" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a></li>
          </ul>
       </div>
 

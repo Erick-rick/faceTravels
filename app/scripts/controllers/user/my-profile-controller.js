@@ -7,21 +7,18 @@ angular.module('mapApp').controller('myProfileController', function(facebookServ
 		facebookService.getUser().then(function(data){
 			if(data){
 				self.usuario = data;
+
+				facebookService.getUserPicture(data.id).then(function(picture){
+					if(picture){
+						self.usuario.largePicture = picture;
+						$rootScope.usuario = self.usuario;
+					}
+				});
 			}
-			console.log("entrou aquiS");
-			console.log(data);
 		});
 		
 	}
 
 	facebookService.addObserver(getUsuario);
 	facebookService.notifyObservers();
-
-	/*self.getMyLastName = function() {
-		self.usuario = $rootScope.user;
-		console.log(self.usuario);
-
-		// Teste
-		document.getElementById('foto').innerHTML = "<img src='"+self.usuario.picture.data.url+"'>"
-	}*/
 });

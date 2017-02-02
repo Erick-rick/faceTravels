@@ -1,51 +1,46 @@
-<fb:login-button  size="large" scope="public_profile,email, user_friends" onlogin="checkLoginState();">Conectar
-</fb:login-button>
-<br>
+<fb:login-button  size="large" scope="public_profile,email, user_friends" onlogin="checkLoginState();">Conectar</fb:login-button>
 <br>
 
-<br>
 
-<div class="col-sm-3">
-<button type="button" ng-click=mpc.getMyLastName()>atualiza</button>
-</div>
-<div class="col-sm-6" id="foto">
-</div>
-
-
-<div class="w3-container">
-  <h2>Dados do Usuario</h2>
-  <p>Dados publicos do perfil</p>            
-  <div class="w3-responsive">
-   <table class="w3-table w3-striped w3-bordered">
-    <tr>
-      <th>Nome</th>
-      <td id="nome">{{mpc.usuario.first_name}}</td>
-    </tr>
-    <tr>
-      <th>sobrenome</th>
-      <td id="sobrenome">{{mpc.usuario.last_name}}</td>
-    </tr>
-    <tr>
-      <th>email</th>
-      <td id="email">{{mpc.usuario.email}}</td>
-    </tr>
-    <tr>
-      <th>sexo</th>
-      <td id="sexo">{{mpc.usuario.gender}}</td>
-    </tr>
-    <tr>
-      <th>link</th>
-      <td><a id="link" target="_blank">link face</a></td>
-    </tr>
-    <tr>
-      <th>idade</th>
-      <td id="idade">{{mpc.usuario.age_range.max + " e " +mpc.usuario.age_range.min}}</td>
-    </tr>
-    <tr>
-      <th>cidade</th>
-      <td id="cidade"></td>
-    </tr>
-
-  </table>
-</div>
+<div class="w3-row-padding">
+   <div class="w3-col s3" id="foto">
+      <br>
+      <img style="max-width: 100%; height: auto;" src="{{mpc.usuario.largePicture.data.url}}">
+   </div>
+   <div class="w3-col s9">
+      <h2>Dados do Usuário</h2>
+      <p>Dados públicos do perfil</p>
+      <div class="w3-responsive">
+         <table class="w3-table w3-striped w3-bordered">
+            <tr>
+               <th>Nome</th>
+               <td id="nome">{{mpc.usuario.first_name}}</td>
+            </tr>
+            <tr>
+               <th>sobrenome</th>
+               <td id="sobrenome">{{mpc.usuario.last_name}}</td>
+            </tr>
+            <tr>
+               <th>email</th>
+               <td id="email">{{mpc.usuario.email}}</td>
+            </tr>
+            <tr>
+               <th>sexo</th>
+               <td id="sexo">{{mpc.usuario.gender}}</td>
+            </tr>
+            <tr>
+               <th>link</th>
+               <td><a style="color: mediumblue;" href="{{mpc.usuario.link}}" id="link" target="_blank">link face</a></td>
+            </tr>
+            <tr>
+               <th>idade</th>
+               <td id="idade">{{mpc.usuario.age_range.max + " e " +mpc.usuario.age_range.min}}</td>
+            </tr>
+            <tr>
+               <th>cidade</th>
+               <td id="cidade"></td>
+            </tr>
+         </table>
+      </div>
+   </div>
 </div>

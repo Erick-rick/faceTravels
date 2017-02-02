@@ -1,4 +1,4 @@
-angular.module("mapApp").factory('facebookService', function($q, $rootScope, $window) {
+angular.module("mapApp").factory('facebookService', function($q, config) {
 	
 	var self = this;
 	self.observerCallbacks = new Array(); //Padrao Observe 
@@ -9,7 +9,7 @@ angular.module("mapApp").factory('facebookService', function($q, $rootScope, $wi
 	**/
 	var initialize = function(){
 		FB.init({
-			appId      : '1789567744640995',
+			appId      : config.facebookApiKey,
 			cookie     : true,  // enable cookies to allow the server to access 
 			                  // the session
 			xfbml      : true,  // parse social plugins on this page
@@ -75,7 +75,21 @@ angular.module("mapApp").factory('facebookService', function($q, $rootScope, $wi
         );
         return deferred.promise;
     };
- 
+
+    var _getUserPicture = function(user_id) {
+        var deferred = $q.defer();
+
+     	FB.api("/"+user_id+"/picture?type=large",
+        	function (response) {
+            	if (!response || response.error) {
+                    deferred.reject('Error occured');
+                } else {
+                    deferred.resolve(response);
+                }
+            }          
+		);
+    	return deferred.promise;
+    };
 
 	//Teste para Verificar caso o usuario esteja logado
 	_addObserver(function(){
@@ -90,6 +104,7 @@ angular.module("mapApp").factory('facebookService', function($q, $rootScope, $wi
     	getUser: _getUser,
     	getMyLastName: _getMyLastName,
     	addObserver: _addObserver,
-    	notifyObservers: _notifyObservers
+    	notifyObservers: _notifyObservers,
+    	getUserPicture: _getUserPicture
     }
 });
