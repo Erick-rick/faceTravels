@@ -55,7 +55,13 @@
                   <a href="#">Jane likes your post</a>
                </div>
             </li>
-            <li class="w3-hide-small w3-right"><a ui-sref="myProfile" class="w3-padding-large w3-hover-white" title="My Account"><img ng-src="{{$root.usuario.largePicture.data.url}}" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a></li>
+            <li class="w3-hide-small w3-right">
+               <a ui-sref="myProfile" class="w3-padding-large w3-hover-white" title="My Account">
+                  <img ng-show="$root.usuario.largePicture" ng-src="{{$root.usuario.largePicture.data.url}}" class="w3-circle" style="height:25px;width:25px" alt="Avatar">
+
+                  <img ng-show="!$root.usuario.largePicture" src="http://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:25px;width:25px" alt="Avatar">
+               </a>
+            </li>
          </ul>
       </div>
 
