@@ -45,7 +45,7 @@
                <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
             </li>
             <li><a href="#" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a></li>
-            <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a></li>
+            <li class="w3-hide-small"><a ui-sref="myMaps" class="w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a></li>
             <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a></li>
             <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a></li>
             <li class="w3-hide-small w3-dropdown-hover">
@@ -57,7 +57,7 @@
                </div>
             </li>
             <li class="w3-hide-small w3-right">
-               <a ui-sref="myProfile" class="w3-padding-large w3-hover-white" title="My Account">
+               <a ui-sref="dashboard.myProfile" class="w3-padding-large w3-hover-white" title="My Account">
                   <img ng-show="$root.usuario.largePicture" ng-src="{{$root.usuario.largePicture.data.url}}" class="w3-circle" style="height:25px;width:25px" alt="Avatar">
 
                   <img ng-show="!$root.usuario.largePicture" src="http://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:25px;width:25px" alt="Avatar">
@@ -79,69 +79,10 @@
       <!-- Page Container -->
       <div class=" w3-content" style="max-width:1500px;margin-top:50px">
          <!-- The Grid -->
-         <div class="w3-row" >
-
-            <!-- Left Column -->
-            <div class="w3-col m3">
-               <div style="padding: 0px 16px">
-                  <h5 class = "h-well w3-teal">Comentarios Recentes</h5>
-               </div>
-               <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
-                  <br>
-                  <img src="http://www.w3schools.com/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                  <span class="w3-right w3-opacity">1 min</span>
-                  <h4>John Doe</h4>
-                  <br>
-                  <hr class="w3-clear">
-                  <p>Gostaria de enfatizar que o acompanhamento das preferências de consumo acarreta um processo de reformulação e modernização das direções preferenciais no sentido do progresso.</p>
-                  <div class="w3-row-padding" style="margin:0 -16px">
-                     <div class="w3-half">
-                        <img src="http://www.w3schools.com/w3images/lights.jpg" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
-                     </div>
-                     <div class="w3-half">
-                        <img src="http://www.w3schools.com/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
-                     </div>
-                  </div>
-                  <button type="button" class="w3-btn w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-                  <button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
-               </div>
-               <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
-                  <br>
-                  <img src="http://www.w3schools.com/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                  <span class="w3-right w3-opacity">16 min</span>
-                  <h4>Jane Doe</h4>
-                  <br>
-                  <hr class="w3-clear">
-                  <p>O que temos que ter sempre em mente é que a valorização de fatores subjetivos promove a alavancagem dos procedimentos normalmente adotados.</p>
-                  <button type="button" class="w3-btn w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-                  <button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
-               </div>
-               <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
-                  <br>
-                  <img src="http://www.w3schools.com/w3images/avatar6.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-                  <span class="w3-right w3-opacity">32 min</span>
-                  <h4>Angie Jane</h4>
-                  <br>
-                  <hr class="w3-clear">
-                  <p>Have you seen this?</p>
-                  <img src="http://www.w3schools.com/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-                  <p>É claro que o acompanhamento das preferências de consumo assume importantes posições no estabelecimento do fluxo de informações.</p>
-                  <button type="button" class="w3-btn w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-                  <button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
-               </div>
-               <!-- End Left Column -->
-
-            </div>
-
-            <!-- Middle Column -->
-            <div class="w3-col m9">
-
+         
       <!-- Imports das paginas -->
-               <ui-view></ui-view>               
+         <div ui-view></div>        
 
-               <!-- End Middle Column -->
-            </div>
-         </div>
          <!-- End Grid -->
       </div>
 
@@ -162,7 +103,7 @@
       <!--  <script src="js/mapa.js"></script>-->
 
       <!-- CONTROLLERS -->
-      <script type="text/javascript" src="scripts/controllers/mapa/maps-controller.js"></script>
+      <script type="text/javascript" src="scripts/controllers/mapas/maps-controller.js"></script>
       <script type="text/javascript" src="scripts/controllers/home/home-controller.js"></script>
       <script type="text/javascript" src="scripts/controllers/user/my-profile-controller.js"></script>
 

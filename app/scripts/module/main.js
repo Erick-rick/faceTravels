@@ -4,23 +4,34 @@ var myApp = angular.module('mapApp', ['ui.router'])
     function($stateProvider, $urlRouterProvider) {
 
          $stateProvider
-            .state('login', {
-                url: '/login',
-                templateUrl: 'views/login/login.html'
+            .state('dashboard', {
+                url: '/dashboard',
+                templateUrl: 'views/dashboard.html'
             })
 
-            .state('home', {
+            .state('dashboard.home', {
                 url: '/home',
                 templateUrl: 'views/home/home.html',
                 controller: 'homeController as hc'
             })
 
-            .state('myProfile', {
+            .state('dashboard.login', {
+                url: '/login',
+                templateUrl: 'views/login/login.html'
+            })
+
+            .state('dashboard.myProfile', {
                 url: '/myProfile',
                 templateUrl: 'views/user/myProfile.html',
                 controller: 'myProfileController as mpc'
+            })
+
+            .state('myMaps', {
+                url: '/myMaps',
+                templateUrl: 'views/mapas/myMaps.html',
+                controller: 'myMapsController as mmc'
             });
 
-         $urlRouterProvider.otherwise('/home');
+         $urlRouterProvider.otherwise('/dashboard/home');
     }
 ]);
