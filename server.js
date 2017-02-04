@@ -8,6 +8,12 @@ app.listen(port, function() {
 	console.log('Servidor carregando na porta ' + port);
 });
 
+  //connect = require('connect')
+
+/* Servidor http, acesso ip porta 8080 */
+/*var http = require('http');
+http.createServer(app).listen(port);*/
+
 
 // Habilitando CORS no NodeJS/Express (server)
 app.all('/*', function(req, res, next) {
