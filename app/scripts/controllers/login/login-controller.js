@@ -1,4 +1,4 @@
-angular.module("mapApp").controller("loginController", function($state, $rootScope){
+angular.module("mapApp").controller("loginController", function($state, $rootScope, facebookService){
 	var self = this;
 	var data = {
 			url: 'img/admin.jpg'
@@ -9,6 +9,15 @@ angular.module("mapApp").controller("loginController", function($state, $rootSco
 		largePicture: {data} 
 
 	}
+
+	/**
+	 * Inicializa o login com facebook.
+	 *
+	 */
+	facebookService.initialize(); 
+	FB.Event.subscribe('auth.login', function(response){
+		$state.go("dashboard.myProfile"); 
+	});
 
 	/**
 	 * Mostra mensagem.

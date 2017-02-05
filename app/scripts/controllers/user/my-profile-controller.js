@@ -2,6 +2,8 @@ angular.module('mapApp').controller('myProfileController', function(facebookServ
 
 	var self = this;
 	self.usuario = {};
+	self.isConected = false;
+	self.listCallback = new Array();
 
 	var getUsuario = function(){
 		facebookService.getUser().then(function(data){
@@ -16,9 +18,20 @@ angular.module('mapApp').controller('myProfileController', function(facebookServ
 				});
 			}
 		});
-		
 	}
 
-	facebookService.addObserver(getUsuario);
-	facebookService.notifyObservers();
+	var getStatus = function(){
+		self.isConected = facebookService.getStatus()
+	}
+
+	self.checkLoginState = function() {
+      FB.getLoginStatus(function(response) {
+        console.log(response);
+      });
+    }
+
+  	self.listCallback.push(getUsuario);
+  	self.listCallback.push(getStatus);
+	facebookService.initialize(self.listCallback);
+
 });
