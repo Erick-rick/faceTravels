@@ -11,13 +11,17 @@ var myApp = angular.module('mapApp', ['ui.router'])
 
             .state('dashboard.home', {
                 url: '/home',
+                params: {
+                    mensagem: null
+                },
                 templateUrl: 'views/home/home.html',
                 controller: 'homeController as hc'
             })
 
             .state('login', {
                 url: '/login',
-                templateUrl: 'views/login/login.html'
+                templateUrl: 'views/login/login.html',
+                controller: 'loginController as lc'
             })
 
             .state('dashboard.myProfile', {
