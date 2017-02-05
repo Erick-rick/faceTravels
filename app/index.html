@@ -3,6 +3,7 @@
    <head>
       <title>Projeto Eng Software</title>
       <meta charset="UTF-8">
+
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="icon" href="img/iconMap.ico" type="image/gif" sizes="16x16">
       <link rel="stylesheet" type="text/css" href="css/w3.css">
@@ -14,7 +15,7 @@
       <script src="lib/angular-ui-router.min.js"></script>
 
       <script src="lib/jquery.min.js"></script>
-7  
+ 
       <!--GOOGLE MAPS -->
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIp1flqT2FaOugs0uJq5UuvoUPdRq8Xc0&libraries=places"></script> 
 
@@ -44,12 +45,31 @@
             <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
                <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
             </li>
-            <li><a href="#" class="w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Home</a></li>
-            <li class="w3-hide-small"><a ui-sref="myMaps" class="w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a></li>
-            <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a></li>
-            <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a></li>
+            <li>
+               <a href="#" class="w3-padding-large w3-theme-d4" title="Pagina inicial" >
+                  <i class="fa fa-home w3-margin-right"></i>Home
+               </a>
+            </li>
+            <li class="w3-hide-small">
+               <a ui-sref="myMaps" class="w3-padding-large w3-hover-white" title="Meus lugares">
+                  <i class="fa fa-globe"></i>
+               </a>
+            </li>
+            <li class="w3-hide-small">
+               <a ui-sref="login" class="w3-padding-large w3-hover-white" title="fazer login">
+                  <i class="fa fa-user"></i>
+               </a>
+            </li>
+            <li class="w3-hide-small">
+               <a href="#" class="w3-padding-large w3-hover-white" title="Mensages">
+                  <i class="fa fa-envelope"></i>
+               </a>
+            </li>
             <li class="w3-hide-small w3-dropdown-hover">
-               <a href="#" class="w3-padding-large w3-hover-white" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></a>     
+               <a href="#" class="w3-padding-large w3-hover-white" title="Notificações">
+                  <i class="fa fa-bell"></i>
+                     <span class="w3-badge w3-right w3-small w3-green">3</span>
+               </a>     
                <div class="w3-dropdown-content w3-white w3-card-4">
                   <a href="#">Uma nova requisição de amizade</a>
                   <a href="#">John Doe postou no seu mural</a>
@@ -68,11 +88,10 @@
 
       <!-- Navbar on small screens -->
       <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
-         <ul class="w3-navbar w3-left-align w3-large w3-theme">
-            <li><a class="w3-padding-large" href="#">Link 1</a></li>
-            <li><a class="w3-padding-large" href="#">Link 2</a></li>
-            <li><a class="w3-padding-large" href="#">Link 3</a></li>
-            <li><a class="w3-padding-large" href="#">My Profile</a></li>
+         <ul class="w3-navbar w3-left-align w3-large w3-theme" style="background-color: white;">
+            <li><a class="w3-padding-large" ui-sref="myMaps">My Maps</a></li>
+            <li><a class="w3-padding-large" ui-sref="login">Login</a></li>
+            <li><a class="w3-padding-large" ui-sref="dashboard.myProfile">My Profile</a></li>
          </ul>
       </div>
 
@@ -106,6 +125,7 @@
       <script type="text/javascript" src="scripts/controllers/mapas/maps-controller.js"></script>
       <script type="text/javascript" src="scripts/controllers/home/home-controller.js"></script>
       <script type="text/javascript" src="scripts/controllers/user/my-profile-controller.js"></script>
+      <script type="text/javascript" src="scripts/controllers/login/login-controller.js"></script>
 
    </body>
 </html>

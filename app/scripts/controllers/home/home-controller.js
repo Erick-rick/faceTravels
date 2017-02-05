@@ -1,4 +1,4 @@
-angular.module('mapApp').controller('homeController', function(mapsService) {
+angular.module('mapApp').controller('homeController', function(mapsService, $timeout, $stateParams) {
 
 	var self = this;
 
@@ -11,6 +11,7 @@ angular.module('mapApp').controller('homeController', function(mapsService) {
 		lat: -15.779, 
 		lng: -47.929
 	}
+	self.mensagem = '';
 
 	var slideIndex = 0;
 
@@ -34,6 +35,25 @@ angular.module('mapApp').controller('homeController', function(mapsService) {
 	}
 
 	showSlides();
+
+	/**
+	 * Mostra mensagem.
+	 *
+	 */
+	var showMensagem= function(msg){
+		self.mensagem = msg;
+		 $timeout(function() {
+        	self.mensagem = "";
+    	}, 4000);
+	};
+
+	self.apagaMensagem= function(){
+		self.mensagem = '';
+	};
+
+	if($stateParams.mensagem){
+		showMensagem($stateParams.mensagem);
+    }
 
 	var initMap = function() {
 		var gmaps = document.getElementById('gmaps');
