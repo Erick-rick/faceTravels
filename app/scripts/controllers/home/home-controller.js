@@ -5,7 +5,7 @@ angular.module('mapApp').controller('homeController', function(mapsService) {
 	self.map = {};
 	self.zoom = 4;
 	self.locais = new Array();
-	self.enderecos = new Array();
+	self.enderecos = mapsService.getTop5();
 	self.markers = new Array();
 	self.centro = {
 		lat: -15.779, 
@@ -13,42 +13,6 @@ angular.module('mapApp').controller('homeController', function(mapsService) {
 	}
 
 	var slideIndex = 0;
-
-	var brasilia = {
-		nome: 'Brasilia - CE, Brasil',
-		location: {lat: -15.779, lng: -47.929},
-		comentario: 'Prefiro Fortaleza'
-	}
-
-	var fortaleza = {
-		nome: 'Av Beira mar, Fortaleza - CE, Brasil',
-		location: {lat:  -3.7253, lng: -38.4912},
-		comentario: 'Melhor cidade'
-	}
-
-	var saoPaulo = {
-		nome: 'São Paulo, SP, Brasil',
-		location: {lat:  -23.550, lng: -46.633},
-		comentario: 'Muito Grande'
-	}
-
-	var rioDeJaneiro = {
-		nome: 'Santa Teresa, Rio de Janeiro - RJ, Brasil',
-		location: {lat:  -22.9517417, lng: -43.21088050000003},
-		comentario: 'Cristo Redentor'
-	}
-
-	var rioGrandeDoSul = {
-		nome: 'Chui - Cristal, Porto Alegre - RS, Brasil',
-		location: {lat:  -30.082321, lng: -51.242774999999995},
-		comentario: 'Chui'
-	}
-
-	self.enderecos.push(fortaleza);
-	self.enderecos.push(rioDeJaneiro);
-	self.enderecos.push(brasilia);
-	self.enderecos.push(saoPaulo);
-	self.enderecos.push(rioGrandeDoSul);
 
 	var showSlides = function() {
 	    var i;
