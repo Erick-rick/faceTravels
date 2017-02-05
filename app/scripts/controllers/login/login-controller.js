@@ -28,6 +28,9 @@ angular.module("mapApp").controller("loginController", function($state, $rootSco
 				showMensagem('Senha invalida');
 			}
 		}
+		else{
+			showMensagem('Usuario invalido');
+		}
 	}
 
 });
