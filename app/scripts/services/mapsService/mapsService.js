@@ -3,6 +3,8 @@ angular.module("mapApp").factory('mapsService', function($q, config) {
 
     self.top5 = new Array();
 
+    self.placeAutoComplete = {};
+
     /***** top 5 cidades *****/
 
     var brasilia = {
@@ -77,9 +79,36 @@ angular.module("mapApp").factory('mapsService', function($q, config) {
         return self.top5;
     }  
 
+
+    var _initAutocomplete = function(element) {
+        var autocomplete = new google.maps.places.Autocomplete(element);
+        console.log("Autocomplete's inicializado");
+
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+
+            if (!place.geometry) {
+              console.log("Autocomplete's returned place contains no geometry");
+              self.placeAutoComplete = {};
+              return;
+            }
+            //Adiciona os locais 
+            self.placeAutoComplete = place;
+            return autocomplete;
+        });
+    }
+
+    var _getPlaceAutoComplete = function(){
+        return self.placeAutoComplete;
+    }
+
     return {
     	initMap: _initMap,
     	addMarker: _addMarker,
-        getTop5: _getTop5
+        getTop5: _getTop5,
+        getPlaceAutoComplete: _getPlaceAutoComplete,
+        initAutocomplete: _initAutocomplete
     }
 });

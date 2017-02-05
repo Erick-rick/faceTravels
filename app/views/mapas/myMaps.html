@@ -40,29 +40,23 @@
 	            <div class="w3-margin-bottom">
 	               <label><b>Localização</b></label>
 
-	         <!--Directiva search -->
-	               <input search-map 
-	                  data-locais="mapaCtrl.locais" 
-	                  id="pac-input" 
-	                  class="w3-input w3-border" 
-	                  type="text" 
-	                  placeholder="Nome do Local">
+	            	<input id="gplace" class="w3-input w3-border" type="text" placeholder="Nome do Local">
 	            </div>
 	            <div class="w3-margin-bottom">
 	               <label><b>Comentário</b></label>
-	               <textarea ng-model="mapaCtrl.comentario" class="w3-input w3-border" rows="4"></textarea>
+	               <textarea ng-model="mmc.comentario" class="w3-input w3-border" rows="4"></textarea>
 	            </div>
 	         </div>
 	      </form>
 	      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
 	         <div class="w3-right">
-	            <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-btn w3-red w3-border">Cancel</button>
+	            <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-btn w3-red w3-border">cancelar</button>
 	            <button
 	               type="button" 
 	               class=" w3-border w3-btn w3-teal"
 	               title="Adicionar um ponto no mapa"
-	               ng-click="mapaCtrl.addLugar()">
-	            Salvar
+	               ng-click="mmc.addLugar()">
+	            Adicionar
 	            </button>
 	         </div>
 	      </div>
