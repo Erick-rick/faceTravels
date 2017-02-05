@@ -1,0 +1,98 @@
+<div class="w3-container w3-section">
+   <div class="w3-row-padding" style="margin: 0px -7px;">
+      <div class="slideshow-container">
+         <div class="mySlides fade">
+            <img src="img/slide/nature.png" style="width:100%">
+         </div>
+         <div class="mySlides fade">
+            <img src="img/slide/water.png" style="width:100%">
+         </div>
+         <div class="mySlides fade">
+            <img src="img/slide/ice.png" style="width:100%">
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="w3-container w3-section">
+   <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-twothird">
+         <h5 class = "h-well w3-teal">Mapa Analisado </h5>
+
+   <!-- MAPA -->
+         <div style=" height: 420px" class="row">
+            <!--<div my-map="" 
+               data-zoom="mapaCtrl.zoom" 
+               data-enderecos="mapaCtrl.enderecos"
+               data-centro="mapaCtrl.centro"></div>-->
+               <div id="gmaps"></div>
+         </div>
+      </div>
+      <div class="w3-third">
+         <div class = "w3-container">
+            <h5 class = "w3-margin-top h-well w3-red" >Top 5 Marcados</h5>
+            <!--<input class="w3-input w3-margin-bottom" placeholder="Digite para filtrar" type="text" name ="filtro">-->
+            <table class="w3-table w3-striped w3-white">
+               <tr ng-repeat="(key, c) in hc.enderecos">
+                  <td>{{key + 1}}</td>
+                  <td class="w3-center">{{c.nome}}</td>
+                  <td>
+                     <button title="Destacar ponto" class="w3-btn w3-white w3-border w3-border-green w3-round-xlarge w3-right" ng-click="hc.centralizar(key)">
+                     <i class="fa fa-street-view"></i>
+                     </button>
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </div>
+</div>
+
+<hr>
+
+<div class="w3-container">
+   <h5>Usuarios Recentes</h5>
+   <ul class="w3-ul w3-card-4 w3-white">
+      <li class="w3-padding-16">
+         <span onclick="this.parentElement.style.display='none'" class="w3-closebtn w3-padding w3-margin-right w3-medium">x</span>
+         <img src="http://www.w3schools.com/w3images/avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+         <span class="w3-xlarge">Nonato</span><br>
+      </li>
+      <li class="w3-padding-16">
+         <span onclick="this.parentElement.style.display='none'" class="w3-closebtn w3-padding w3-margin-right w3-medium">x</span>
+         <img src="http://www.w3schools.com/w3images/avatar5.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+         <span class="w3-xlarge">Ivo</span><br>
+      </li>
+      <li class="w3-padding-16">
+         <span onclick="this.parentElement.style.display='none'" class="w3-closebtn w3-padding w3-margin-right w3-medium">x</span>
+         <img src="http://www.w3schools.com/w3images/avatar6.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+         <span class="w3-xlarge">Maria</span><br>
+      </li>
+   </ul>
+</div>
+<hr>
+<div class="w3-container">
+   <h5>Comentarios Recentes</h5>
+   <div class="w3-row">
+      <div class="w3-col m2 text-center">
+         <img class="w3-circle" src="http://www.w3schools.com/w3images/avatar3.png" style="width:96px;height:96px">
+      </div>
+      <div class="w3-col m10 w3-container">
+         <h4>Pedro <span class="w3-opacity w3-medium">Sep 29, 2014, 9:12 PM</span></h4>
+         <p>Que lugar magnífico, eu realmente gostei de visitar</p>
+         <br>
+      </div>
+   </div>
+   <div class="w3-row">
+      <div class="w3-col m2 text-center">
+         <img class="w3-circle" src="http://www.w3schools.com/w3images/avatar1.png" style="width:96px;height:96px">
+      </div>
+      <div class="w3-col m10 w3-container">
+         <h4>João <span class="w3-opacity w3-medium">Sep 28, 2014, 10:15 PM</span></h4>
+         <p>Não trouxe nenhuma emoção.</p>
+         <br>
+      </div>
+   </div>
+</div>
+
+
