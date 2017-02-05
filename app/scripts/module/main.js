@@ -15,7 +15,7 @@ var myApp = angular.module('mapApp', ['ui.router'])
                 controller: 'homeController as hc'
             })
 
-            .state('dashboard.login', {
+            .state('login', {
                 url: '/login',
                 templateUrl: 'views/login/login.html'
             })
