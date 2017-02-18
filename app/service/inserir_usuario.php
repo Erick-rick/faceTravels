@@ -8,7 +8,17 @@ function cadastrar(){
 	}
 	
 	
+	$usuario = new Usuario();
+	$usuario->setNome($_POST['nome']);
+	$usuario->setLogin($_POST['login']);
+	$usuario->setSenha($_POST['senha']);
 	
+	$usuarioDao = new UsuarioDAO();
+	if($usuarioDao->inserir($usuario)){
+		echo "Sucesso";
+	}else{
+		echo "Fracasso";
+	}
 	
 	
 	

@@ -3,6 +3,10 @@
 
 class DAO{
 	
+	/**
+	 * 
+	 * @var PDO
+	 */
 	protected $conexao;
 	
 	public function DAO(PDO $conexao = null){

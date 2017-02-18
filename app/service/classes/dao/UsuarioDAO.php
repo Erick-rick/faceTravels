@@ -14,6 +14,11 @@ class UsuarioDAO extends DAO{
 	}
 	public function inserir(Usuario $usuario){
 		
+		$sql = "INSERT INTO usuario(nome, login, senha) 
+				VALUES('".$usuario->getNome()."', '".$usuario->getLogin()."', '".$usuario->getSenha()."')";
+		
+		return $this->getConexao()->exec($sql);
+		
 		
 	}
 	public function retornaLista() {
