@@ -19,7 +19,7 @@ $usuarioDao = new UsuarioDAO();
 $lista = $usuarioDao->retornaLista();
 $listaUsuarios['usuarios'] = array();
 foreach($lista as $linha){
-	$usuarios['usuarios'][] = array('id_usuario' => $linha->getId(), 'nome' => $linha->getNome(), 'email', 'login' => $linha->getLogin(), 'senha' => $linha->getSenha(), 'id_facebook' => $linha->getIdFacebook());
+	$usuarios['usuarios'][] = array('id_usuario' => $linha->getId(), 'nome' => $linha->getNome(), 'login' => $linha->getLogin(), 'senha' => $linha->getSenha(), 'id_facebook' => $linha->getIdFacebook());
 }
 echo json_encode($usuarios);
 
