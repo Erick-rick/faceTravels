@@ -15,9 +15,26 @@ class UsuarioDAO extends DAO{
 	public function inserir(Usuario $usuario){
 		
 		$sql = "INSERT INTO usuario(nome, login, senha) 
-				VALUES('".$usuario->getNome()."', '".$usuario->getLogin()."', '".$usuario->getSenha()."')";
+				VALUES(:nome, :login, :senha)";
+		$nome = $usuario->getNome();
+		$login = $usuario->getLogin();
+		$senha = $usuario->getSenha();
+		try {
+			$db = $this->getConexao();
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("nome", $nome, PDO::PARAM_STR);
+			$stmt->bindParam("login", $login, PDO::PARAM_STR);
+			$stmt->bindParam("senha", $senha, PDO::PARAM_STR);
+			$result = $stmt->execute();
+			// Verifica se o insert foi bem sucedido
+			
+			return $result;
+			 
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
 		
-		return $this->getConexao()->exec($sql);
+// 		return $this->getConexao()->exec($sql);
 		
 		
 	}
