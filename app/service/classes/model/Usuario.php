@@ -9,7 +9,19 @@ class Usuario{
 	private $login;
 	private $senha;
 	private $idFacebook;
+	private $sexo;
 	
+	public function Usuario(){
+		$this->idFacebook = "";
+		$this->sexo = "";	
+	}
+	
+	public function setSexo($sexo){
+		$this->sexo = $sexo;
+	}
+	public function getSexo(){
+		return $this->sexo;
+	}
 	public function setId($id){
 		$this->id = $id;
 	}

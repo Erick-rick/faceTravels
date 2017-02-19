@@ -14,17 +14,21 @@ class UsuarioDAO extends DAO{
 	}
 	public function inserir(Usuario $usuario){
 		
-		$sql = "INSERT INTO usuario(nome, login, senha) 
-				VALUES(:nome, :login, :senha)";
+		$sql = "INSERT INTO usuario(nome, login, senha, id_facebook, sexo) 
+				VALUES(:nome, :login, :senha, :idface, :sexo)";
 		$nome = $usuario->getNome();
 		$login = $usuario->getLogin();
 		$senha = $usuario->getSenha();
+		$idFace = $usuario->getIdFacebook();
+		$sexo = $usuario->getSexo();
 		try {
 			$db = $this->getConexao();
 			$stmt = $db->prepare($sql);
 			$stmt->bindParam("nome", $nome, PDO::PARAM_STR);
 			$stmt->bindParam("login", $login, PDO::PARAM_STR);
 			$stmt->bindParam("senha", $senha, PDO::PARAM_STR);
+			$stmt->bindParam("idface", $idFace, PDO::PARAM_STR);
+			$stmt->bindParam("sexo", $sexo, PDO::PARAM_STR);
 			$result = $stmt->execute();
 			// Verifica se o insert foi bem sucedido
 			
@@ -47,6 +51,7 @@ class UsuarioDAO extends DAO{
 			$usuario->setLogin($linha ['login']);
 			$usuario->setSenha($linha['senha']);
 			$usuario->setIdFacebook($linha['id_facebook']);
+			$usuario->setSexo($linha['sexo']);
 			$lista [] = $usuario;
 		}
 		return $lista;
