@@ -34,9 +34,6 @@ class UsuarioDAO extends DAO{
 			echo '{"error":{"text":'. $e->getMessage() .'}}';
 		}
 		
-// 		return $this->getConexao()->exec($sql);
-		
-		
 	}
 	public function retornaLista() {
 		$lista = array ();
@@ -53,6 +50,29 @@ class UsuarioDAO extends DAO{
 			$lista [] = $usuario;
 		}
 		return $lista;
+	}
+	
+	public function autenticar(Usuario $usuario){
+		$sql = "SELECT * FROM usuario WHERE login = :login AND senha = :senha";
+		
+		try{
+			$stmt = $this->getConexao()->prepare($sql);
+			$stmt->bindParam("login", $login, PDO::PARAM_STR);
+			$stmt->bindParam("senha", $senha, PDO::PARAM_STR);
+			$stmt->execute();
+			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+				
+		}catch (PDOException $e){
+			echo '{"erro":{"text":'. $e->getMessage() .'}}';
+		}
+		foreach($result as $linha){
+			$usuario = new Usuario();
+			$usuario->setNome($linha['nome']);
+			$usuario->setLogin($linha['login']);
+			return $usuario;
+		}
+		
+		
 	}
 	
 }
