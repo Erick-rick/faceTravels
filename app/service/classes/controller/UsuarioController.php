@@ -1,4 +1,6 @@
 <?php
+
+
 class UsuarioController {
 	public static function cadastrar() {
 		
