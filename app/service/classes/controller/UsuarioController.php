@@ -2,9 +2,9 @@
 
 
 class UsuarioController {
+	
+	
 	public static function cadastrar() {
-		
-		
 		if (! (isset ( $_POST ['nome'] ) && isset ( $_POST ['login'] ) && isset ( $_POST ['senha'] ))) {
 			echo "Incompleto";
 			return;
@@ -34,11 +34,24 @@ class UsuarioController {
 			echo "Incompleto";
 			return;
 		}
+		$usuarioDao = new UsuarioDAO();
 		$usuario = new Usuario();
 		$usuario->setLogin($_POST['login']);
 		$usuario->setSenha($_POST['senha']);
-		$usuarioDao = new UsuarioDAO();
-		$usuarioDao->autenticar($usuario);
+
+		if($usuarioDao->autenticar($usuario)){
+			$vUsuario[] = array (
+					'id_usuario' => $usuario->getId (),
+					'nome' => $usuario->getNome (),
+					'login' => $usuario->getLogin (),
+					'senha' => $usuario->getSenha (),
+					'id_facebook' => $usuario->getIdFacebook (),
+					'sexo' => $usuario->getSexo()
+			);
+			echo json_encode ($vUsuario);
+			return;
+		}
+		echo 'Errou!';
 		
 		
 	}

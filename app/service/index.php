@@ -10,6 +10,15 @@
 		<input type="text" name="senha" />
 		<input type="submit" name="Enviar" />
 	</form>
+	
+	
+	<h1>Autenticar</h1>
+	<form action="autenticar_usuario.php" method="post">
+		<input type="text" name="login" />
+		<input type="text" name="senha" />
+		<input type="submit" name="Enviar" />
+	</form>
+	
 	</body>
 </html>
 

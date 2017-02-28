@@ -58,6 +58,9 @@ class UsuarioDAO extends DAO{
 	}
 	
 	public function autenticar(Usuario $usuario){
+		$login = $usuario->getLogin();
+		$senha = $usuario->getSenha();
+		
 		$sql = "SELECT * FROM usuario WHERE login = :login AND senha = :senha";
 		
 		try{
@@ -71,11 +74,16 @@ class UsuarioDAO extends DAO{
 			echo '{"erro":{"text":'. $e->getMessage() .'}}';
 		}
 		foreach($result as $linha){
-			$usuario = new Usuario();
-			$usuario->setNome($linha['nome']);
-			$usuario->setLogin($linha['login']);
-			return $usuario;
+			
+			$usuario->setId( $linha ['id_usuario'] );
+			$usuario->setNome( $linha ['nome'] );
+			$usuario->setLogin($linha ['login']);
+			$usuario->setSenha($linha['senha']);
+			$usuario->setIdFacebook($linha['id_facebook']);
+			$usuario->setSexo($linha['sexo']);
+			return true;
 		}
+		return false;
 		
 		
 	}
