@@ -1,0 +1,41 @@
+<div class="w3-container">
+  <h2 style=" margin-bottom: 0px;">Usuários</h2>
+  <div class="w3-row">
+    <div class="w3-col s10">
+      <p>Todos os usuários do facetravels</p>
+    </div>
+    <div class="w3-col s2">
+      <button title="Novo" class="w3-btn w3-teal w3-border w3-border-black w3-round-xlarge w3-right">
+        Novo
+    </button>
+    </div>
+  </div>
+
+  <div class="w3-responsive">
+    <table class="w3-table-all w3-hoverable">
+      <thead>
+        <tr class="w3-light-grey">
+          <th>Nome</th>
+          <th>Login</th>
+          <th>Sexo</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tr ng-repeat="usuario in ulc.lista">
+        <td>{{usuario.nome}}</td>
+        <td>{{usuario.login}}</td>
+        <td>{{usuario.sexo}}</td>
+        <td>
+          <div class="w3-bar w3-right">
+            <button title="Editar" class="w3-btn w3-yellow w3-border w3-border-black w3-round-xlarge">
+                <i class="fa fa-edit"></i>
+            </button>
+            <button title="Deletar" class="w3-btn w3-red w3-border w3-border-black w3-round-xlarge ">
+                <i class="fa fa-trash"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
