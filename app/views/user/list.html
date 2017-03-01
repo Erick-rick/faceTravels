@@ -30,7 +30,7 @@
             <button title="Editar" class="w3-btn w3-yellow w3-border w3-border-black w3-round-xlarge">
                 <i class="fa fa-edit"></i>
             </button>
-            <button title="Deletar" class="w3-btn w3-red w3-border w3-border-black w3-round-xlarge ">
+            <button title="Deletar" class="w3-btn w3-red w3-border w3-border-black w3-round-xlarge " onclick="document.getElementById('id01').style.display='block'">
                 <i class="fa fa-trash"></i>
             </button>
           </div>
@@ -39,3 +39,26 @@
     </table>
   </div>
 </div>
+
+<!-- MODAL REMOVE -->
+  <div id="id01" class="w3-modal">
+     <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:700px">
+        <header class="w3-container w3-teal">
+           <h4>Deseja Realmente excluir o Usuário?</h4>
+        </header>
+        
+
+        <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+           <div class="w3-right">
+              <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-btn w3-red w3-border">cancelar</button>
+              <button
+                 type="button" 
+                 class=" w3-border w3-btn w3-teal"
+                 title="Adicionar um ponto no mapa"
+                 ng-click="unc.remove()">
+              confirmar
+              </button>
+           </div>
+        </div>
+     </div>
+  </div>

@@ -20,4 +20,8 @@ angular.module('mapApp').controller('usersNewController', function(userService) 
   		});
 	}
 
+	self.remove = function(){
+		
+	}
+
 });
