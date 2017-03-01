@@ -40,6 +40,12 @@ var myApp = angular.module('mapApp', ['ui.router'])
                 url: '/usersList',
                 templateUrl: 'views/user/list.html',
                 controller: 'usersListController as ulc'
+            })
+
+            .state('usersNew', {
+                url: '/usersNew',
+                templateUrl: 'views/user/new.html',
+                controller: 'usersNewController as unc'
             });
 
          $urlRouterProvider.otherwise('/dashboard/home');
