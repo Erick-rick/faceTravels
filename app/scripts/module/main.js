@@ -1,7 +1,7 @@
 var myApp = angular.module('mapApp', ['ui.router'])
 
-.config(["$stateProvider", "$urlRouterProvider",
-    function($stateProvider, $urlRouterProvider) {
+.config(["$stateProvider", "$urlRouterProvider", "$httpProvider",
+    function($stateProvider, $urlRouterProvider, $httpProvider) {
 
          $stateProvider
             .state('dashboard', {
@@ -48,6 +48,9 @@ var myApp = angular.module('mapApp', ['ui.router'])
                 controller: 'usersNewController as unc'
             });
 
-         $urlRouterProvider.otherwise('/dashboard/home');
+        // browser will not pop up an authentication dialog
+        //$httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+
+        $urlRouterProvider.otherwise('/dashboard/home');
     }
 ]);
