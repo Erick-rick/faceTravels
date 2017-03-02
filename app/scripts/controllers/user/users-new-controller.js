@@ -13,7 +13,7 @@ angular.module('mapApp').controller('usersNewController', function(userService) 
 
 
 	self.save = function(){
-		userService.saveUser(usuario).then(function onSuccess(response) {
+		userService.saveUser(self.usuario).then(function onSuccess(response) {
     		
   		}, function onError(response) {
 		   
