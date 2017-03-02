@@ -64,22 +64,45 @@
 	</div>
 </div>
 <br>
+
 <div class="w3-row-padding" >
-	
 	<div class="w3-container w3-card-2 w3-white w3-round w3-margin">
 		<br>
 		<img src="http://www.w3schools.com/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:40px">
 		<span class="w3-right w3-opacity">1 min</span>
-		<h4>Nonato Dias</h4>
+		<h4 id='usuario'>{{mmc.usuario.nome}}</h4>
+
 		<hr class="w3-clear">
-		<p>
-			Difícil encontrar alguém que não goste de viajar. Independente da modalidade – desde o que só viajam em alguns feriados por ano, até aqueles que adotaram o lifestyle de viajantes  – viajar é definitivamente algo que nos move e que desperta sentimentos únicos.
-		</p>
+		<p>{{mmc.texto}}</p>
+
+		<div ng-repeat="comentario in mmc.listaComentarios" >
+			<div class="w3-container w3-card-2 w3-white w3-round w3-margin">
+				<br>
+				<img src="http://www.w3schools.com/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:40px">
+				<span class="w3-right w3-opacity">1 min</span>
+				<h4 id='usuario'>{{comentario.usuario.nome}}</h4>
+
+				<hr class="w3-clear">
+				<p>{{comentario.texto}}</p>
+			</div>
+
+		</div>
+
+	<div ng-show="mmc.showComentario" >
+		<div class="w3-container w3-card-2 w3-white w3-round w3-margin">
+	        <br>
+	        <img src="http://www.w3schools.com/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:40px">
+	        <h4 id='usuario'>{{mmc.usuario.nome}}</h4>
+	        
+	        <input class="w3-input w3-border" type="text" ng-model='mmc.cometario.texto' ng-keypress="mmc.addComentario($event)">
+	        <br>
+	    </div>
+	</div>
 
 		<button type="button" class="w3-btn w3-theme-d1 w3-margin-bottom">
 			<i class="fa fa-thumbs-up"></i>  Like
 		</button> 
-		<button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom">
+		<button type="button" ng-click="mmc.showComentario = !mmc.showComentario " class="w3-btn w3-theme-d2 w3-margin-bottom">
 			<i class="fa fa-comment"></i>  Comment
 		</button> 
 	</div>
