@@ -3,3 +3,10 @@ logs/*
 node_modules/
 bower_components/
 npm-debug.log
+.metadata/*
+.project/*
+.settings/*
+*.buildpath
+*.settings
+*.project*
+*/condominio/*
