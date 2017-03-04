@@ -5,20 +5,25 @@ class UsuarioController {
 	
 	
 	public static function cadastrar() {
-		if (! (isset ( $_POST ['nome'] ) && isset ( $_POST ['login'] ) && isset ( $_POST ['senha'] ))) {
+		
+		$json = file_get_contents("php://input");
+		$post = json_decode($json, true);
+		if (! (isset ( $post ['nome'] ) && isset ( $post['login'] ) && isset ( $post['senha'] ))) {
+			
+			
 			echo "Incompleto";
 			return;
 		}
 		
 		$usuario = new Usuario ();
-		$usuario->setNome ( $_POST ['nome'] );
-		$usuario->setLogin ( $_POST ['login'] );
-		$usuario->setSenha ( $_POST ['senha'] );
-		if(isset($_POST['id_face'])){
-			$usuario->setIdFacebook($_POST['id_face']);
+		$usuario->setNome ( $post ['nome'] );
+		$usuario->setLogin ( $post ['login'] );
+		$usuario->setSenha ( $post ['senha'] );
+		if(isset($post['id_face'])){
+			$usuario->setIdFacebook($post['id_face']);
 		}
 		if(isset($_POST['sexo'])){
-			$usuario->setSexo($_POST['sexo']);
+			$usuario->setSexo($post['sexo']);
 		}
 		
 		$usuarioDao = new UsuarioDAO ();
