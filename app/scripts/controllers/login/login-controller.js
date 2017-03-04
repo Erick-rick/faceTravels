@@ -32,8 +32,16 @@ angular.module("mapApp").controller("loginController", function($state, $rootSco
 
 		userService.authenticate(self.user).then(function onSuccess(response) {
     		if(response.data != "Errou!" && response.data != "Incompleto"){
-				$rootScope.usuario = response.data[0];
-				$rootScope.usuario.largePicture = {data}; 
+
+    			var usuarioLogado = response.data[0];
+    			usuarioLogado.largePicture = {data}; 
+				//Armazena o usuario na sessao
+				localStorage.setItem("usuarioLogado", usuarioLogado.nome);
+				localStorage.setItem("usuarioId", usuarioLogado.id_usuario);
+				localStorage.setItem("usuarioFoto", usuarioLogado.largePicture.data.url);
+
+				$rootScope.usuario = usuarioLogado;
+
 				$state.go("dashboard.home", {mensagem: 'Olá '+ response.data[0].nome });   
 			} 
 			else{
@@ -43,6 +51,11 @@ angular.module("mapApp").controller("loginController", function($state, $rootSco
   		}, function onError(response) {
 		   
   		});
+	}
+
+	self.logout = function(){
+		$rootScope.usuario = null;
+		localStorage.clear();
 	}
 
 });

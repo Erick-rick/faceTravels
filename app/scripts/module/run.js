@@ -1,6 +1,14 @@
 angular.module('mapApp').run(['$rootScope', '$window',
   function($rootScope, $window) {
 
-  $rootScope.usuario = {}; //Nao utilizado ainda
+  	if (localStorage.getItem("usuarioId")) {
+  		var data = {};
+  		data.url = localStorage.getItem("usuarioFoto");
 
+        $rootScope.usuario = {
+        	nome: localStorage.getItem("usuarioLogado"),
+        	id_usuario: localStorage.getItem("usuarioId"),
+        	largePicture: {data}
+        } 
+    }
 }]);
