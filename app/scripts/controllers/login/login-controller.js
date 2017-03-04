@@ -1,13 +1,12 @@
-angular.module("mapApp").controller("loginController", function($state, $rootScope, facebookService){
+angular.module("mapApp").controller("loginController", function($state, $rootScope, facebookService, userService){
 	var self = this;
 	var data = {
-			url: 'img/admin.jpg'
+			url: 'img/userMain.png'
 		}
 	var admin ={
 		nome: 'admin',
 		senha: 'admin',
 		largePicture: {data} 
-
 	}
 
 	/**
@@ -16,6 +15,8 @@ angular.module("mapApp").controller("loginController", function($state, $rootSco
 	 */
 	facebookService.initialize(); 
 	FB.Event.subscribe('auth.login', function(response){
+
+
 		$state.go("dashboard.myProfile"); 
 	});
 
@@ -28,18 +29,20 @@ angular.module("mapApp").controller("loginController", function($state, $rootSco
 	};
 
 	self.login = function(){
-		if(self.nome == admin.nome){
-			if(self.senha == admin.senha){
-				$rootScope.usuario = admin;
-				$state.go("dashboard.home", {mensagem: 'Olá Admin!' });   
-			}
+
+		userService.authenticate(self.user).then(function onSuccess(response) {
+    		if(response.data != "Errou!" && response.data != "Incompleto"){
+				$rootScope.usuario = response.data[0];
+				$rootScope.usuario.largePicture = {data}; 
+				$state.go("dashboard.home", {mensagem: 'Olá '+ response.data[0].nome });   
+			} 
 			else{
 				showMensagem('Senha invalida');
 			}
-		}
-		else{
-			showMensagem('Usuario invalido');
-		}
+
+  		}, function onError(response) {
+		   
+  		});
 	}
 
 });

@@ -8,8 +8,11 @@ angular.module("mapApp").factory('userService', function(config, $http, $q) {
 		return $http.post(config.baseUrl + 'inserir_usuario.php', user);
 	} 
 
-	var _authenticate = function(user){
-		return $http.post(config.baseUrl + 'inserir_usuario.php', user);
+	var _authenticate = function(login){
+		/*return $http.post(config.baseUrl + 'autenticar_usuario.php', 
+			'login='+login.login+'&senha='+login.senha,
+			 {headers: {'Content-Type': 'application/x-www-form-urlencoded'}});*/
+		return $http.post(config.baseUrl + 'autenticar_usuario.php', login);
 	} 
 
     return {
