@@ -5,49 +5,24 @@
       <div style="padding: 0px 16px">
          <h5 class = "h-well w3-teal">Comentarios Recentes</h5>
       </div>
-      <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
+
+    
+      <div ng-repeat="comentario in hc.listaComentarios"  class="w3-container w3-card-2 w3-white w3-round w3-margin">
          <br>
-         <img src="http://www.w3schools.com/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+         <img src="{{comentario.largePicture.data.url}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
          <span class="w3-right w3-opacity">1 min</span>
-         <h4>John Doe</h4>
+         <h4>{{comentario.usuario.nome}}</h4>
          <br>
          <hr class="w3-clear">
-         <p>Gostaria de enfatizar que o acompanhamento das preferências de consumo acarreta um processo de reformulação e modernização das direções preferenciais no sentido do progresso.</p>
+         <p>{{comentario.texto}}</p>
          <div class="w3-row-padding" style="margin:0 -16px">
-            <div class="w3-half">
-               <img src="http://www.w3schools.com/w3images/lights.jpg" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
-            </div>
-            <div class="w3-half">
-               <img src="http://www.w3schools.com/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
-            </div>
+            <img src="{{comentario.mapa}}" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
          </div>
          <button type="button" class="w3-btn w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
          <button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
       </div>
-      <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
-         <br>
-         <img src="http://www.w3schools.com/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-         <span class="w3-right w3-opacity">16 min</span>
-         <h4>Jane Doe</h4>
-         <br>
-         <hr class="w3-clear">
-         <p>O que temos que ter sempre em mente é que a valorização de fatores subjetivos promove a alavancagem dos procedimentos normalmente adotados.</p>
-         <button type="button" class="w3-btn w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-         <button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
-      </div>
-      <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
-         <br>
-         <img src="http://www.w3schools.com/w3images/avatar6.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-         <span class="w3-right w3-opacity">32 min</span>
-         <h4>Angie Jane</h4>
-         <br>
-         <hr class="w3-clear">
-         <p>Have you seen this?</p>
-         <img src="http://www.w3schools.com/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-         <p>É claro que o acompanhamento das preferências de consumo assume importantes posições no estabelecimento do fluxo de informações.</p>
-         <button type="button" class="w3-btn w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-         <button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
-      </div>
+      
+      
       <!-- End Left Column -->
 
    </div>
@@ -111,50 +86,7 @@
 
       <hr>
 
-      <div class="w3-container">
-         <h5>Usuarios Recentes</h5>
-         <ul class="w3-ul w3-card-4 w3-white">
-            <li class="w3-padding-16">
-               <span onclick="this.parentElement.style.display='none'" class="w3-closebtn w3-padding w3-margin-right w3-medium">x</span>
-               <img src="http://www.w3schools.com/w3images/avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-               <span class="w3-xlarge">Nonato</span><br>
-            </li>
-            <li class="w3-padding-16">
-               <span onclick="this.parentElement.style.display='none'" class="w3-closebtn w3-padding w3-margin-right w3-medium">x</span>
-               <img src="http://www.w3schools.com/w3images/avatar5.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-               <span class="w3-xlarge">Ivo</span><br>
-            </li>
-            <li class="w3-padding-16">
-               <span onclick="this.parentElement.style.display='none'" class="w3-closebtn w3-padding w3-margin-right w3-medium">x</span>
-               <img src="http://www.w3schools.com/w3images/avatar6.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-               <span class="w3-xlarge">Maria</span><br>
-            </li>
-         </ul>
-      </div>
-      <hr>
-      <div class="w3-container">
-         <h5>Comentarios Recentes</h5>
-         <div class="w3-row">
-            <div class="w3-col m2 text-center">
-               <img class="w3-circle" src="http://www.w3schools.com/w3images/avatar3.png" style="width:96px;height:96px">
-            </div>
-            <div class="w3-col m10 w3-container">
-               <h4>Pedro <span class="w3-opacity w3-medium">Sep 29, 2014, 9:12 PM</span></h4>
-               <p>Que lugar magnífico, eu realmente gostei de visitar</p>
-               <br>
-            </div>
-         </div>
-         <div class="w3-row">
-            <div class="w3-col m2 text-center">
-               <img class="w3-circle" src="http://www.w3schools.com/w3images/avatar1.png" style="width:96px;height:96px">
-            </div>
-            <div class="w3-col m10 w3-container">
-               <h4>João <span class="w3-opacity w3-medium">Sep 28, 2014, 10:15 PM</span></h4>
-               <p>Não trouxe nenhuma emoção.</p>
-               <br>
-            </div>
-         </div>
-      </div>
+      
       <!-- End Middle Column -->
    </div>
 </div>
