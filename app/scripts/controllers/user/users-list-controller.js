@@ -27,18 +27,39 @@ angular.module('mapApp').controller('usersListController', function(userService,
   		});
 	}
 
-	self.openModal = function(usuario){
+	self.openModalRemover = function(usuario){
 		 document.getElementById('id01').style.display='block';
-		self.userToRemove  = usuario;
+		self.userToChange  = usuario;
+	}
+
+	self.openModalPermissao = function(usuario){
+		 document.getElementById('id02').style.display='block';
+		self.userToChange  = usuario;
 	}
 
 	self.removeUsuario = function(){
-		userService.deleteUser(self.userToRemove.id_usuario).then(function onSuccess(response) {
+		userService.deleteUser(self.userToChange.id_usuario).then(function onSuccess(response) {
 
     		userService.getUsers().then(function onSuccess(response) {
     			self.lista = response.data.usuarios;
     			document.getElementById('id01').style.display='none';
     			showMensagem('Removido com Sucesso');
+
+	  		}, function onError(response) {
+			   
+	  		});
+  		}, function onError(response) {
+		   
+  		});
+	}
+
+	self.tornarAdmin = function(){
+		userService.changeRoleUser(self.userToChange.id_usuario).then(function onSuccess(response) {
+
+    		userService.getUsers().then(function onSuccess(response) {
+    			self.lista = response.data.usuarios;
+    			document.getElementById('id02').style.display='none';
+    			showMensagem('Modificado com Sucesso');
 
 	  		}, function onError(response) {
 			   
