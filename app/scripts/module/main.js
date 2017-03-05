@@ -24,7 +24,7 @@ var myApp = angular.module('mapApp', ['ui.router'])
                 controller: 'loginController as lc'
             })
 
-            .state('dashboard.myProfile', {
+            .state('myProfile', {
                 url: '/myProfile',
                 templateUrl: 'views/user/myProfile.html',
                 controller: 'myProfileController as mpc'
