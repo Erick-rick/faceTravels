@@ -64,7 +64,7 @@ class UsuarioController {
 	public static function excluirUsuario() {
 		$json = file_get_contents("php://input");
 		$post = json_decode($json, true);
-		if (isset ( $post ['id_usuario'] ))
+		if (!isset ( $post ['id_usuario'] ))
 		{
 			echo "Incompleto";
 			return;
