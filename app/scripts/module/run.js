@@ -13,4 +13,11 @@ angular.module('mapApp').run(['$rootScope', '$window',
         	largePicture: {data}
         } 
     }
+
+    //Logout
+  $rootScope.logout = function(){
+    $rootScope.usuario = null;
+    localStorage.clear();
+  }
+  
 }]);

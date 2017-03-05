@@ -49,7 +49,8 @@
             <div class="w3-dropdown-content w3-white w3-card-4" style="right:0">
                <a href="#">Novo Usuário</a>
                <a ui-sref="dashboard.myProfile">Meu Perfil</a>
-               <a ui-sref="{{dc.buttom.url}}" >{{dc.buttom.nome}}</a>
+               <a ng-show="!$root.usuario" ui-sref="dashboard.login">Login</a>
+               <a ng-show="$root.usuario" style="cursor:pointer" ng-click="$root.logout()">Logout</a>
             </div>
          </li>
       </ul>

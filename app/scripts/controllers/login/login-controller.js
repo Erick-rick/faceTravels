@@ -110,7 +110,8 @@ angular.module("mapApp").controller("loginController", function($state, $rootSco
   		});
 	}
 
-	self.logout = function(){
+	//Logout
+	$rootScope.logout = function(){
 		$rootScope.usuario = null;
 		localStorage.clear();
 	}
