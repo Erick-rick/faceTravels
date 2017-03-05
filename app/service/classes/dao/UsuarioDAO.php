@@ -113,7 +113,9 @@ class UsuarioDAO extends DAO{
 	
 	public function retornaLista() {
 		$lista = array ();
-		$sql = "SELECT * FROM usuario LIMIT 1000";
+		$sql = "SELECT * FROM usuario 
+				INNER JOIN regra ON regra.id_regra = usuario.id_regra
+				LIMIT 1000";
 		$result = $this->getConexao ()->query ( $sql );
 	
 		foreach ( $result as $linha ) {
@@ -124,6 +126,7 @@ class UsuarioDAO extends DAO{
 			$usuario->setSenha($linha['senha']);
 			$usuario->setIdFacebook($linha['id_facebook']);
 			$usuario->setSexo($linha['sexo']);
+			$usuario->setRegra($linha['id_regra']);
 			$lista [] = $usuario;
 		}
 		return $lista;

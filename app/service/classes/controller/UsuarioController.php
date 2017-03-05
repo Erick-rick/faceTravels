@@ -91,7 +91,10 @@ class UsuarioController {
 					'login' => $linha->getLogin (),
 					'senha' => $linha->getSenha (),
 					'id_facebook' => $linha->getIdFacebook (),
-					'sexo' => $linha->getSexo()
+					'sexo' => $linha->getSexo(),
+					'regra' => $linha->getStrRegra()
+					
+					
 			);
 		}
 		echo json_encode ( $usuarios );
