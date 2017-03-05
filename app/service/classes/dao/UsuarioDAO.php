@@ -83,6 +83,33 @@ class UsuarioDAO extends DAO{
 		return false;
 	
 	}
+	public function constultarPorIdFace(Usuario $usuario){
+		$id = $usuario->getIdFacebook();
+	
+		$sql = "SELECT * FROM usuario WHERE id_facebook = :id LIMIT 1";
+	
+		try{
+			$stmt = $this->getConexao()->prepare($sql);
+			$stmt->bindParam("id", $id, PDO::PARAM_STR);
+			$stmt->execute();
+			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	
+		}catch (PDOException $e){
+			echo '{"erro":{"text":'. $e->getMessage() .'}}';
+		}
+		foreach($result as $linha){
+	
+			$usuario->setId( $linha ['id_usuario'] );
+			$usuario->setNome( $linha ['nome'] );
+			$usuario->setLogin($linha ['login']);
+			$usuario->setSenha($linha['senha']);
+			$usuario->setIdFacebook($linha['id_facebook']);
+			$usuario->setSexo($linha['sexo']);
+			return $usuario;
+		}
+		return false;
+	
+	}
 	
 	public function retornaLista() {
 		$lista = array ();

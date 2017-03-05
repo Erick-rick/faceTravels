@@ -123,27 +123,32 @@ class UsuarioController {
 		echo json_encode ($vUsuario);
 	}
 	
-	public static function consultarFaceDoUsuario(){
+	public static function consultarPorIdFace(){
 		$json = file_get_contents("php://input");
 		$post = json_decode($json, true);
-		if(!isset($post['id_usuario']))
+		if(!isset($post['id_face']))
 		{
 			echo "Incompleto";
 			return;
 		}
 		$dao = new UsuarioDAO();
 		$usuario = new Usuario();
-		$usuario->setId($post['id_usuario']);
-		if(!$dao->constultarPorId($usuario)){
+		$usuario->setIdFacebook($post['id_face']);
+		if(!$dao->constultarPorIdFace($usuario)){
 			echo 'N&atilde;o encontrado.';
 			return;
 				
 		}
-		if($usuario->getIdFacebook() != null){
-			echo $usuario->getIdFacebook();
-		}else{
-			echo 'Inexistente.';
-		}
+		
+		$vUsuario[] = array (
+				'id_usuario' => $usuario->getId (),
+				'nome' => $usuario->getNome (),
+				'login' => $usuario->getLogin (),
+				'senha' => $usuario->getSenha (),
+				'id_facebook' => $usuario->getIdFacebook (),
+				'sexo' => $usuario->getSexo()
+		);
+		echo json_encode ($vUsuario);
 	}
 }
 
