@@ -12,6 +12,10 @@ angular.module("mapApp").factory('userService', function(config, $http, $q) {
 		return $http.get(config.baseUrl + 'lista_usuario.php');
 	} 
 
+	var _getUserFB = function(id_face){
+		return $http.post(config.baseUrl + 'consultar_face.php', {id_face});
+	} 
+
 	var _saveUser = function(user){
 		return $http.post(config.baseUrl + 'inserir_usuario.php', user);
 	} 
@@ -27,6 +31,7 @@ angular.module("mapApp").factory('userService', function(config, $http, $q) {
     	getUsers: _getUsers,
     	saveUser: _saveUser,
     	authenticate: _authenticate,
-    	storeUser: _storeUser
+    	storeUser: _storeUser,
+    	getUserFB: _getUserFB
     }
 });

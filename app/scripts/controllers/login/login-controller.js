@@ -12,24 +12,54 @@ angular.module("mapApp").controller("loginController", function($state, $rootSco
 
 	var getUsuarioFB = function(){
 		var usuarioLogado;
-		facebookService.getUser().then(function(data){
+		facebookService.getUserID().then(function(data){
 			if(data){
-				usuarioLogado = {
-					nome: data.name,
-					login: data.email,
-					sexo: data.gender
-				};
+				userService.getUserFB(data.id).then(function onSuccess(response) {
+					if(response.data){
+						facebookService.getUserPicture(data.id).then(function(picture){
+							usuarioLogado = response.data[0];
 
-				facebookService.getUserPicture(data.id).then(function(picture){
-					if(picture){
-						usuarioLogado.largePicture = picture;
+							if(picture){
+								usuarioLogado.largePicture = picture;  
+							}
+							//Armazena o usuario na sessao
+							userService.storeUser(usuarioLogado);
+							$rootScope.usuario = usuarioLogado;
 
-						//Armazena o usuario na sessao
-						userService.storeUser(usuarioLogado);
-						$rootScope.usuario = usuarioLogado;
+							$state.go("dashboard.home", {mensagem: 'Olá '+ usuarioLogado.nome });
+						});
 
-						$state.go("dashboard.home", {mensagem: 'Olá '+ usuarioLogado.nome });  
-					}
+					}else{
+						facebookService.getUserBasic().then(function(obj){
+							usuarioLogado = {
+								nome: obj.name,
+								login: 'user'+obj.id,
+								sexo: obj.gender,
+								senha: '123456',
+								id_face: obj.id
+							};
+							
+							userService.saveUser(usuarioLogado).then(function onSuccess(response) {
+								console.log('Salvo com sucesso');
+
+								facebookService.getUserPicture(obj.id).then(function(picture){
+									if(picture){
+										usuarioLogado.largePicture = picture;  
+									}
+
+									//Armazena o usuario na sessao
+									userService.storeUser(usuarioLogado);
+									$rootScope.usuario = usuarioLogado;
+
+									$state.go("dashboard.home", {mensagem: 'Olá '+ usuarioLogado.nome });
+								});
+					  		}, function onError(response) {
+							   console.log('Erro ao salvar');
+					  		});
+						});
+						
+					}	
+					}, function onError(response) {
 				});
 			}
 		});
