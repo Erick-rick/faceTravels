@@ -20,7 +20,8 @@ class Usuario{
 	}
 	
 	public function setSexo($sexo){
-		$this->sexo = $sexo;
+		
+		$this->sexo = substr($sexo,0,1);
 	}
 	public function getSexo(){
 		return $this->sexo;

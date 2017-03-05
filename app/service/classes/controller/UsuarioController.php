@@ -22,7 +22,7 @@ class UsuarioController {
 		if(isset($post['id_face'])){
 			$usuario->setIdFacebook($post['id_face']);
 		}
-		if(isset($_POST['sexo'])){
+		if(isset($post['sexo'])){
 			$usuario->setSexo($post['sexo']);
 		}
 		
