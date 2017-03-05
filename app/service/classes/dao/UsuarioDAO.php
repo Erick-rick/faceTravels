@@ -39,6 +39,51 @@ class UsuarioDAO extends DAO{
 		}
 		
 	}
+	public function excluir(Usuario $usuario){
+	
+		$id = $usuario->getId();
+		$sql = "DELETE FROM usuario WHERE id_usuario = :id";
+		
+		try {
+			$db = $this->getConexao();
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("id", $id, PDO::PARAM_STR);
+			$result = $stmt->execute();
+			return $result;
+	
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	
+	}
+	public function constultarPorId(Usuario $usuario){
+		$id = $usuario->getId();
+		
+		$sql = "SELECT * FROM usuario WHERE id_usuario = :id LIMIT 1";
+		
+		try{
+			$stmt = $this->getConexao()->prepare($sql);
+			$stmt->bindParam("id", $id, PDO::PARAM_STR);
+			$stmt->execute();
+			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		}catch (PDOException $e){
+			echo '{"erro":{"text":'. $e->getMessage() .'}}';
+		}
+		foreach($result as $linha){
+				
+			$usuario->setId( $linha ['id_usuario'] );
+			$usuario->setNome( $linha ['nome'] );
+			$usuario->setLogin($linha ['login']);
+			$usuario->setSenha($linha['senha']);
+			$usuario->setIdFacebook($linha['id_facebook']);
+			$usuario->setSexo($linha['sexo']);
+			return $usuario;
+		}
+		return false;
+	
+	}
+	
 	public function retornaLista() {
 		$lista = array ();
 		$sql = "SELECT * FROM usuario LIMIT 1000";
