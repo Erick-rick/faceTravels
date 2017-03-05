@@ -8,6 +8,18 @@ angular.module("mapApp").factory('userService', function(config, $http, $q) {
 		localStorage.setItem("usuarioFoto", usuarioLogado.largePicture.data.url);
 	}
 
+	var _getStoredUser = function(){
+		var data= {};
+		data.url = localStorage.getItem("usuarioFoto");
+		return user = {
+			nome: localStorage.getItem("usuarioNome"),
+			sexo: localStorage.getItem("usuarioSexo"),
+			login: localStorage.getItem("usuarioLogin"),
+			id_usuario: localStorage.getItem("usuarioId"),
+			largePicture: {data}
+		}
+	}
+
 	var _getUsers = function(){
 		return $http.get(config.baseUrl + 'lista_usuario.php');
 	} 
@@ -33,6 +45,7 @@ angular.module("mapApp").factory('userService', function(config, $http, $q) {
 
     return {
     	getUsers: _getUsers,
+    	getStoredUser: _getStoredUser,
     	saveUser: _saveUser,
     	deleteUser: _deleteUser,
     	authenticate: _authenticate,

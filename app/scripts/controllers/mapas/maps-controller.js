@@ -1,4 +1,4 @@
-angular.module('mapApp').controller('myMapsController', function(mapsService) {
+angular.module('mapApp').controller('myMapsController', function(mapsService, userService) {
 	var self = this;
 
 	var self = this;
@@ -20,12 +20,19 @@ angular.module('mapApp').controller('myMapsController', function(mapsService) {
     self.usuario = {
         nome: 'Nonato Dias'
     };
+
+    self.usuarioLogado = userService.getStoredUser();
+    if(!self.usuarioLogado.nome)
+		self.usuarioLogado.nome = 'Desconhecido';
+    
     self.showComentario = false;
 
     self.listaComentarios = [];
+    var fotoJose = {url: 'https://www.w3schools.com/w3images/avatar3.png'};
     self.listaComentarios.push({
     	usuario: {
-    		nome: 'José'
+    		nome: 'José',
+    		largePicture: {data: fotoJose}
     	},
     	texto: 'Porque sair é, muitas vezes, a melhor forma de nos encontrarmos – por mais irônico que possa parecer.'
     });
@@ -105,18 +112,14 @@ angular.module('mapApp').controller('myMapsController', function(mapsService) {
 	/********* Comentarios **********/
 
 	self.addComentario = function(keyEvent){
-
+		
 		if (keyEvent.which === 13){
 			self.listaComentarios.push({
-		    	usuario: {
-		    		nome: 'Nonato'
-		    	},
+		    	usuario: self.usuarioLogado,
 		    	texto: self.cometario.texto
 		    });
 		}
 	}
-
-
 
 	//Fim Comentarios
 
