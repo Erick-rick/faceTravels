@@ -14,13 +14,14 @@ class UsuarioDAO extends DAO{
 	}
 	public function inserir(Usuario $usuario){
 		
-		$sql = "INSERT INTO usuario(nome, login, senha, id_facebook, sexo) 
-				VALUES(:nome, :login, :senha, :idface, :sexo)";
+		$sql = "INSERT INTO usuario(nome, login, senha, id_facebook, sexo, id_regra) 
+				VALUES(:nome, :login, :senha, :idface, :sexo, :regra)";
 		$nome = $usuario->getNome();
 		$login = $usuario->getLogin();
 		$senha = $usuario->getSenha();
 		$idFace = $usuario->getIdFacebook();
 		$sexo = $usuario->getSexo();
+		$regra = $usuario->getRegra();
 		try {
 			$db = $this->getConexao();
 			$stmt = $db->prepare($sql);
@@ -29,6 +30,7 @@ class UsuarioDAO extends DAO{
 			$stmt->bindParam("senha", $senha, PDO::PARAM_STR);
 			$stmt->bindParam("idface", $idFace, PDO::PARAM_STR);
 			$stmt->bindParam("sexo", $sexo, PDO::PARAM_STR);
+			$stmt->bindParam("regra", $regra, PDO::PARAM_STR);
 			$result = $stmt->execute();
 			// Verifica se o insert foi bem sucedido
 			
@@ -56,6 +58,28 @@ class UsuarioDAO extends DAO{
 		}
 	
 	}
+	
+	public function alterarRegra(Usuario $usuario){
+	
+		$id = $usuario->getId();
+		$regra = $usuario->getRegra();
+		$sql = "UPDATE usuario set id_regra = :regra
+				WHERE id_usuario = :id";
+	
+		try {
+			$db = $this->getConexao();
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("id", $id, PDO::PARAM_STR);
+			$stmt->bindParam("regra", $regra, PDO::PARAM_STR);
+			$result = $stmt->execute();
+			return $result;
+	
+		} catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}';
+		}
+	
+	}
+
 	public function constultarPorId(Usuario $usuario){
 		$id = $usuario->getId();
 		

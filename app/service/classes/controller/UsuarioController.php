@@ -80,6 +80,28 @@ class UsuarioController {
 		}
 		
 	}
+	public static function tornarAdmin() {
+		$json = file_get_contents("php://input");
+		$post = json_decode($json, true);
+		if (!isset ( $post ['id_usuario'] ))
+		{
+			echo "Incompleto";
+			return;
+		}
+		$usuario = new Usuario();
+		$usuario->setId($post['id_usuario']);
+		$usuario->setRegra(Usuario::USUARIO_ADM);
+		$usuarioDao = new UsuarioDAO ();
+		if($usuarioDao->alterarRegra($usuario)){
+			echo "sucesso!";
+		}
+		else{
+			echo 'Erro!';
+		}
+	
+	}
+	
+	
 	public static function listar() {
 		$usuarioDao = new UsuarioDAO ();
 		$lista = $usuarioDao->retornaLista ();

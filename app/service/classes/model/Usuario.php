@@ -14,7 +14,9 @@ class Usuario{
 	
 	public function Usuario(){
 		$this->idFacebook = "";
-		$this->sexo = "";	
+		$this->sexo = "";
+		$this->regra = self::USUARIO_COMUM;
+		
 	}
 	
 	public function setSexo($sexo){
@@ -58,26 +60,26 @@ class Usuario{
 	public function setRegra($regra){
 		$this->regra = $regra;
 	}
-	public function getPapel(){
+	public function getRegra(){
 		return $this->regra;
 	}
 	public function getStrRegra(){
 		switch ($this->regra){
-			case self::REGRA_VIP:
-				return "VIP";
+			case self::USUARIO_VIP:
+				return "USUARIO_VIP";
 				break;
-			case self::REGRA_ADM:
-				return "ADM";
+			case self::USUARIO_ADM:
+				return "USUARIO_ADM";
 				break;
 			default:
-				return "PADRAO";
+				return "USUARIO_COMUM";
 				break;
 		}
 		
 	}
-	const REGRA_PADRAO = 1;
-	const REGRA_ADM = 2;
-	const REGRA_VIP = 3;
+	const USUARIO_COMUM = 1;
+	const USUARIO_ADM= 2;
+	const USUARIO_VIP = 3;
 	
 }
 
