@@ -5,20 +5,25 @@ class UsuarioController {
 	
 	
 	public static function cadastrar() {
-		if (! (isset ( $_POST ['nome'] ) && isset ( $_POST ['login'] ) && isset ( $_POST ['senha'] ))) {
+		
+		$json = file_get_contents("php://input");
+		$post = json_decode($json, true);
+		if (! (isset ( $post ['nome'] ) && isset ( $post['login'] ) && isset ( $post['senha'] ))) {
+			
+			
 			echo "Incompleto";
 			return;
 		}
 		
 		$usuario = new Usuario ();
-		$usuario->setNome ( $_POST ['nome'] );
-		$usuario->setLogin ( $_POST ['login'] );
-		$usuario->setSenha ( $_POST ['senha'] );
-		if(isset($_POST['id_face'])){
-			$usuario->setIdFacebook($_POST['id_face']);
+		$usuario->setNome ( $post ['nome'] );
+		$usuario->setLogin ( $post ['login'] );
+		$usuario->setSenha ( $post ['senha'] );
+		if(isset($post['id_face'])){
+			$usuario->setIdFacebook($post['id_face']);
 		}
 		if(isset($_POST['sexo'])){
-			$usuario->setSexo($_POST['sexo']);
+			$usuario->setSexo($post['sexo']);
 		}
 		
 		$usuarioDao = new UsuarioDAO ();
@@ -29,15 +34,16 @@ class UsuarioController {
 		}
 	}
 	public static function logar() {
-		
-		if(!(isset($_POST['login']) && isset($_POST['senha']))){
+		$json = file_get_contents("php://input");
+		$post = json_decode($json, true);
+		if(!(isset($post['login']) && isset($post['senha']))){
 			echo "Incompleto";
 			return;
 		}
 		$usuarioDao = new UsuarioDAO();
 		$usuario = new Usuario();
-		$usuario->setLogin($_POST['login']);
-		$usuario->setSenha($_POST['senha']);
+		$usuario->setLogin($post['login']);
+		$usuario->setSenha($post['senha']);
 
 		if($usuarioDao->autenticar($usuario)){
 			$vUsuario[] = array (
@@ -55,6 +61,47 @@ class UsuarioController {
 		
 		
 	}
+	public static function excluirUsuario() {
+		$json = file_get_contents("php://input");
+		$post = json_decode($json, true);
+		if (!isset ( $post ['id_usuario'] ))
+		{
+			echo "Incompleto";
+			return;
+		}
+		$usuario = new Usuario();
+		$usuario->setId($post['id_usuario']);
+		$usuarioDao = new UsuarioDAO ();
+		if($usuarioDao->excluir($usuario)){
+			echo "sucesso!";
+		}
+		else{
+			echo 'Erro!';
+		}
+		
+	}
+	public static function tornarAdmin() {
+		$json = file_get_contents("php://input");
+		$post = json_decode($json, true);
+		if (!isset ( $post ['id_usuario'] ))
+		{
+			echo "Incompleto";
+			return;
+		}
+		$usuario = new Usuario();
+		$usuario->setId($post['id_usuario']);
+		$usuario->setRegra(Usuario::USUARIO_ADM);
+		$usuarioDao = new UsuarioDAO ();
+		if($usuarioDao->alterarRegra($usuario)){
+			echo "sucesso!";
+		}
+		else{
+			echo 'Erro!';
+		}
+	
+	}
+	
+	
 	public static function listar() {
 		$usuarioDao = new UsuarioDAO ();
 		$lista = $usuarioDao->retornaLista ();
@@ -65,11 +112,68 @@ class UsuarioController {
 					'nome' => $linha->getNome (),
 					'login' => $linha->getLogin (),
 					'senha' => $linha->getSenha (),
-					'id_facebook' => $linha->getIdFacebook (), 
-					'sexo' => $linha->getSexo()
+					'id_facebook' => $linha->getIdFacebook (),
+					'sexo' => $linha->getSexo(),
+					'regra' => $linha->getStrRegra()
+					
+					
 			);
 		}
 		echo json_encode ( $usuarios );
+	}
+	public static function consultarUsuario(){
+		$json = file_get_contents("php://input");
+		$post = json_decode($json, true);
+		if(!isset($post['id_usuario']))
+		{
+			echo "Incompleto";
+			return;
+		}		
+		$dao = new UsuarioDAO();
+		$usuario = new Usuario();
+		$usuario->setId($post['id_usuario']);
+		if(!$dao->constultarPorId($usuario)){
+			echo 'N&atilde;o encontrado.';
+			return;
+			
+		}
+		$vUsuario[] = array (
+				'id_usuario' => $usuario->getId (),
+				'nome' => $usuario->getNome (),
+				'login' => $usuario->getLogin (),
+				'senha' => $usuario->getSenha (),
+				'id_facebook' => $usuario->getIdFacebook (),
+				'sexo' => $usuario->getSexo()
+		);
+		echo json_encode ($vUsuario);
+	}
+	
+	public static function consultarPorIdFace(){
+		$json = file_get_contents("php://input");
+		$post = json_decode($json, true);
+		if(!isset($post['id_face']))
+		{
+			echo "Incompleto";
+			return;
+		}
+		$dao = new UsuarioDAO();
+		$usuario = new Usuario();
+		$usuario->setIdFacebook($post['id_face']);
+		if(!$dao->constultarPorIdFace($usuario)){
+// 			echo 'N&atilde;o encontrado.';
+			return;
+				
+		}
+		
+		$vUsuario[] = array (
+				'id_usuario' => $usuario->getId (),
+				'nome' => $usuario->getNome (),
+				'login' => $usuario->getLogin (),
+				'senha' => $usuario->getSenha (),
+				'id_facebook' => $usuario->getIdFacebook (),
+				'sexo' => $usuario->getSexo()
+		);
+		echo json_encode ($vUsuario);
 	}
 }
 

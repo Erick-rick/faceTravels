@@ -1,6 +1,9 @@
 angular.module('mapApp').controller('myProfileController', function(facebookService, $rootScope) {
 
 	var self = this;
+	self.usuario = $rootScope.usuario;
+
+	/*
 	self.usuario = {};
 	self.isConected = false;
 	self.listCallback = new Array();
@@ -34,4 +37,5 @@ angular.module('mapApp').controller('myProfileController', function(facebookServ
   	self.listCallback.push(getStatus);
 	facebookService.initialize(self.listCallback);
 
+	*/
 });

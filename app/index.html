@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="mapApp">
    <head>
-      <title>Projeto Eng Software</title>
+      <title>Porque viajar é sua cara!</title>
       <meta charset="UTF-8">
 
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,102 +43,13 @@
    </head>
    <body class="w3-light-grey w3-theme-l5">
 
-      <!-- Navbar -->
-      <div class="w3-top">
-         <ul class="w3-navbar w3-theme-d2 w3-left-align w3-large">
-            <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
-               <a class="w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-            </li>
-            <li>
-               <a href="#" class="w3-padding-large w3-theme-d4" title="Pagina inicial" >
-                  <i class="fa fa-home w3-margin-right"></i>Home
-               </a>
-            </li>
-            <li class="w3-hide-small">
-               <a ui-sref="myMaps" class="w3-padding-large w3-hover-white" title="Meus lugares">
-                  <i class="fa fa-globe"></i>
-               </a>
-            </li>
-            <!--<li class="w3-hide-small">
-               <a ui-sref="login" class="w3-padding-large w3-hover-white" title="fazer login">
-                  <i class="fa fa-user"></i>
-               </a>
-            </li>-->
-            <li class="w3-hide-small">
-               <a href="#" class="w3-padding-large w3-hover-white" title="Mensages">
-                  <i class="fa fa-envelope"></i>
-               </a>
-            </li>
-            <li class="w3-hide-small">
-               <a ui-sref="usersList" class="w3-padding-large w3-hover-white" title="Usuarios">
-                  <i class="fa fa-users"></i>
-               </a>
-            </li>
-            <li class="w3-hide-small w3-dropdown-hover">
-               <a href="#" class="w3-padding-large w3-hover-white" title="Notificações">
-                  <i class="fa fa-bell"></i>
-                     <span class="w3-badge w3-right w3-small w3-green">3</span>
-               </a>     
-               <div class="w3-dropdown-content w3-white w3-card-4">
-                  <a href="#">Uma nova requisição de amizade</a>
-                  <a href="#">John Doe postou no seu mural</a>
-                  <a href="#">Jane curtiu seu post</a>
-               </div>
-            </li>
-            <li class="w3-hide-small w3-right w3-dropdown-hover">
-               <a ui-sref="dashboard.myProfile" class="w3-padding-large w3-hover-white" title="My Account">
-                  <img ng-show="$root.usuario.largePicture" ng-src="{{$root.usuario.largePicture.data.url}}" class="w3-circle" style="height:25px;width:25px" alt="Avatar">
-
-                  <img ng-show="!$root.usuario.largePicture" src="http://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:25px;width:25px" alt="Avatar">
-               </a>
-               <div class="w3-dropdown-content w3-white w3-card-4" style="right:0">
-                  <a href="#">Novo Usuário</a>
-                  <a ui-sref="dashboard.myProfile">Meu Perfil</a>
-                  <a ui-sref="login" >Login</a>
-                  <a href="#">Logout</a>
-               </div>
-            </li>
-         </ul>
-      </div>
-
-      <!-- Navbar on small screens -->
-      <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
-         <ul class="w3-navbar w3-left-align w3-large w3-theme" style="background-color: white;">
-            <li><a class="w3-padding-large" ui-sref="myMaps">My Maps</a></li>
-            <li><a class="w3-padding-large" ui-sref="login">Login</a></li>
-            <li><a class="w3-padding-large" ui-sref="dashboard.myProfile">My Profile</a></li>
-         </ul>
-      </div>
-
-      <!-- Page Container -->
-      <div class=" w3-content" style="max-width:1500px;margin-top:50px">
-         <!-- The Grid -->
-         
-      <!-- Imports das paginas -->
-         <div ui-view></div>        
-
-         <!-- End Grid -->
-      </div>
-
-      <!-- End Page Container -->
-      </div>
-      <br>
-
-   <!-- Footer 
-      <footer class="w3-container w3-theme-d3 w3-padding-16">
-         <h5>Footer</h5>
-      </footer>
-      <footer class="w3-container w3-theme-d5">
-         <p>Desenvolvido por Nonato Dias</a></p>
-      </footer>-->
-
-
-      
-      <!--  <script src="js/mapa.js"></script>-->
+      <!--Imports Views -->
+      <div ui-view></div>
 
       <!-- CONTROLLERS -->
-      <script type="text/javascript" src="scripts/controllers/mapas/maps-controller.js"></script>
+      <script type="text/javascript" src="scripts/controllers/dashboard-controller.js"></script>
       <script type="text/javascript" src="scripts/controllers/home/home-controller.js"></script>
+      <script type="text/javascript" src="scripts/controllers/mapas/maps-controller.js"></script>
       <script type="text/javascript" src="scripts/controllers/user/my-profile-controller.js"></script>
       <script type="text/javascript" src="scripts/controllers/user/users-list-controller.js"></script>
       <script type="text/javascript" src="scripts/controllers/user/users-new-controller.js"></script>

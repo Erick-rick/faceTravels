@@ -1,103 +1,112 @@
+<div class="w3-row" >
 
-<div ng-show="hc.mensagem.length" style="background-color: rgba(76, 175, 80, 0.66)!important; margin-top: 0px!important;" class="w3-col s12 m3 w3-panel w3-green w3-round-large w3-right">
-    <span ng-click="hc.apagaMensagem()" class="w3-closebtn">&times;</span>
-    <h5><center>{{hc.mensagem}}</center></h5>
-</div>
-<div class="w3-container w3-section">
-   <div class="w3-row-padding" style="margin: 0px -7px;">
-      <div class="slideshow-container">
-         <div class="mySlides fade">
-            <img src="img/slide/nature.png" style="width:100%">
-         </div>
-         <div class="mySlides fade">
-            <img src="img/slide/water.png" style="width:100%">
-         </div>
-         <div class="mySlides fade">
-            <img src="img/slide/ice.png" style="width:100%">
-         </div>
+   <!-- Left Column -->
+   <div class="w3-col m3 w3-hide-small">
+      <div style="padding: 0px 16px">
+         <h5 class = "h-well w3-teal">Comentarios Recentes</h5>
       </div>
-   </div>
-</div>
 
-<div class="w3-container w3-section">
-   <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-twothird">
-         <h5 class = "h-well w3-teal">Mapa Analisado </h5>
-
-   <!-- MAPA -->
-         <div style=" height: 420px" class="row">
-            <!--<div my-map="" 
-               data-zoom="mapaCtrl.zoom" 
-               data-enderecos="mapaCtrl.enderecos"
-               data-centro="mapaCtrl.centro"></div>-->
-               <div id="gmaps"></div>
-         </div>
-      </div>
-      <div class="w3-third">
-         <div class = "w3-container">
-            <h5 class = "w3-margin-top h-well w3-red" >Top 5 Marcados</h5>
-            <!--<input class="w3-input w3-margin-bottom" placeholder="Digite para filtrar" type="text" name ="filtro">-->
-            <table class="w3-table w3-striped w3-white">
-               <tr ng-repeat="(key, c) in hc.enderecos">
-                  <td>{{key + 1}}</td>
-                  <td class="w3-center">{{c.nome}}</td>
-                  <td>
-                     <button title="Destacar ponto" class="w3-btn w3-white w3-border w3-border-green w3-round-xlarge w3-right" ng-click="hc.centralizar(key)">
-                     <i class="fa fa-street-view"></i>
-                     </button>
-                  </td>
-               </tr>
-            </table>
-         </div>
-      </div>
-   </div>
-</div>
-
-<hr>
-
-<div class="w3-container">
-   <h5>Usuarios Recentes</h5>
-   <ul class="w3-ul w3-card-4 w3-white">
-      <li class="w3-padding-16">
-         <span onclick="this.parentElement.style.display='none'" class="w3-closebtn w3-padding w3-margin-right w3-medium">x</span>
-         <img src="http://www.w3schools.com/w3images/avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-         <span class="w3-xlarge">Nonato</span><br>
-      </li>
-      <li class="w3-padding-16">
-         <span onclick="this.parentElement.style.display='none'" class="w3-closebtn w3-padding w3-margin-right w3-medium">x</span>
-         <img src="http://www.w3schools.com/w3images/avatar5.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-         <span class="w3-xlarge">Ivo</span><br>
-      </li>
-      <li class="w3-padding-16">
-         <span onclick="this.parentElement.style.display='none'" class="w3-closebtn w3-padding w3-margin-right w3-medium">x</span>
-         <img src="http://www.w3schools.com/w3images/avatar6.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-         <span class="w3-xlarge">Maria</span><br>
-      </li>
-   </ul>
-</div>
-<hr>
-<div class="w3-container">
-   <h5>Comentarios Recentes</h5>
-   <div class="w3-row">
-      <div class="w3-col m2 text-center">
-         <img class="w3-circle" src="http://www.w3schools.com/w3images/avatar3.png" style="width:96px;height:96px">
-      </div>
-      <div class="w3-col m10 w3-container">
-         <h4>Pedro <span class="w3-opacity w3-medium">Sep 29, 2014, 9:12 PM</span></h4>
-         <p>Que lugar magnífico, eu realmente gostei de visitar</p>
+    
+      <div ng-repeat="comentario in hc.listaComentarios"  class="w3-container w3-card-2 w3-white w3-round w3-margin">
          <br>
+         <img src="{{comentario.largePicture.data.url}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px; height:60px;">
+         <span class="w3-right w3-opacity">1 min</span>
+         <h4>{{comentario.usuario.nome}}</h4>
+         <br>
+         <hr class="w3-clear">
+         <p>{{comentario.texto}}</p>
+         <div class="w3-row-padding" style="margin:0 -16px">
+            <img src="{{comentario.mapa}}" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
+         </div>
+         <button type="button" class="w3-btn w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+         <button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+      </div>
+      
+      
+      <!-- End Left Column -->
+
+   </div>
+
+   <!-- Middle Column -->
+   <div class="w3-col m9 s12">
+
+      <div ng-show="hc.mensagem.length" style="background-color: rgba(76, 175, 80, 0.66)!important; margin-top: 0px!important;" class="w3-col s12 m3 w3-panel w3-green w3-round-large w3-right">
+        <span ng-click="hc.apagaMensagem()" class="w3-closebtn">&times;</span>
+        <h5><center>{{hc.mensagem}}</center></h5>
+     </div>
+     <div class="w3-container w3-section">
+      <div class="w3-row-padding" style="margin: 0px -7px;">
+         <div class="slideshow-container">
+            <div class="mySlides fade">
+               <img src="img/slide/nature.png" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+               <img src="img/slide/water.png" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+               <img src="img/slide/ice.png" style="width:100%">
+            </div>
+         </div>
       </div>
    </div>
-   <div class="w3-row">
-      <div class="w3-col m2 text-center">
-         <img class="w3-circle" src="http://www.w3schools.com/w3images/avatar1.png" style="width:96px;height:96px">
+
+   <div class="w3-container w3-section">
+      <div class="w3-row-padding" style="margin:0 -16px">
+         <div class="w3-twothird">
+            <h5 class = "h-well w3-teal">FaceTravels Brasil </h5>
+
+            <!-- MAPA -->
+            <div style=" height: 420px" class="row">
+               <!--<div my-map="" 
+                  data-zoom="mapaCtrl.zoom" 
+                  data-enderecos="mapaCtrl.enderecos"
+                  data-centro="mapaCtrl.centro"></div>-->
+                  <div id="gmaps"></div>
+               </div>
+            </div>
+            <div class="w3-third">
+               <div class = "w3-container">
+                  <h5 class = "w3-margin-top h-well w3-red" >Top 5 Marcados</h5>
+                  <!--<input class="w3-input w3-margin-bottom" placeholder="Digite para filtrar" type="text" name ="filtro">-->
+                  <table class="w3-table w3-striped w3-white">
+                     <tr ng-repeat="(key, c) in hc.enderecos">
+                        <td>{{key + 1}}</td>
+                        <td class="w3-center">{{c.nome}}</td>
+                        <td>
+                           <button title="Destacar ponto" class="w3-btn w3-white w3-border w3-border-green w3-round-xlarge w3-right" ng-click="hc.centralizar(key)">
+                              <i class="fa fa-street-view"></i>
+                           </button>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+         </div>
       </div>
-      <div class="w3-col m10 w3-container">
-         <h4>João <span class="w3-opacity w3-medium">Sep 28, 2014, 10:15 PM</span></h4>
-         <p>Não trouxe nenhuma emoção.</p>
-         <br>
-      </div>
+
+      <hr>
+
+         <div style="padding: 0px 16px">
+            <h5 class = "h-well w3-teal">10 motivos pelos quais viajar é preciso!</h5>
+         </div>
+         <article class="w3-container">
+            <p style="font-size: 18px!important;" >Difícil encontrar alguém que não goste de viajar. Independente da modalidade – desde o que só viajam em alguns feriados por ano, até aqueles que adotaram o lifestyle de viajantes  – viajar é definitivamente algo que nos move e que desperta sentimentos únicos.Por isso, hoje trouxemos uma lista com 10 motivos pelos quais viajar é preciso: </p>
+
+            <ul class="w3-ul w3-large w3-border">
+             <li>1. Porque sair é, muitas vezes, a melhor forma de nos encontrarmos – por mais irônico que possa parecer.</li>
+             <li>2. Porque viajar nos faz mais humildes ao nos tirar da bolha e nos mostrar que o mundo é muito maior – e mais complexo – do que insistimos em imaginar.</li>
+             <li>3. Porque damos muito mais valor quando perdemos, e viajar nos faz realmente agradecer a comida da mãe, os amigos por perto, e a coxinha da padaria da esquina.</li>
+             <li>4. Porque quando viajamos tudo é novo e, consequemente, referência. É a melhor forma de se inspirar e desenvolver a criatividade enquanto se diverte.</li>
+             <li>5. Porque viajar nos tira do tédio – um dos grandes causadores da infelicidade (como falamos aqui)</li>
+             <li>6. Porque viajar nos torna menos preconceituosos. Passamos a entender – e admirar – culturas que antes apenas julgávamos sem conhecer.</li>
+             <li>7. Porque viajar é bem mais seguro do que imaginamos. Muitas vezes fantasiamos coisas terríveis que podem acontecer em viagens, mas raríssimas delas acontecem. Viajar pode ser mais seguro do que permanecer onde você está.</li>
+             <li>8. Porque viagem é a única coisa que compramos e que nos deixa mais ricos.</li>
+             <li>9. Porque a emoção de estar num lugar que você sempre viu nos livros (e sonhou em estar) nunca vai poder ser descrita em palavras, fotos ou vídeos. Nenhuma tecnologia vai conseguir recriar essa sensação.</li>
+             <li>10. Porque existem milhões de pessoas interessantes no mundo, e você nunca vai encontrá-las enquanto não sair do seu bairro.</li>
+          </ul>
+       </article>
+      
+      <!-- End Middle Column -->
    </div>
 </div>
-
 

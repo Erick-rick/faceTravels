@@ -1,4 +1,4 @@
-angular.module('mapApp').controller('myMapsController', function(mapsService) {
+angular.module('mapApp').controller('myMapsController', function(mapsService, userService) {
 	var self = this;
 
 	var self = this;
@@ -14,6 +14,28 @@ angular.module('mapApp').controller('myMapsController', function(mapsService) {
 		lat: -15.779, 
 		lng: -47.929
 	}
+
+
+	self.texto = 'Difícil encontrar alguém que não goste de viajar. Independente da modalidade – desde o que só viajam em alguns feriados por ano, até aqueles que adotaram o lifestyle de viajantes  – viajar é definitivamente algo que nos move e que desperta sentimentos únicos.';
+    self.usuario = {
+        nome: 'Nonato Dias'
+    };
+
+    self.usuarioLogado = userService.getStoredUser();
+    if(!self.usuarioLogado.nome)
+		self.usuarioLogado.nome = 'Desconhecido';
+    
+    self.showComentario = false;
+
+    self.listaComentarios = [];
+    var fotoJose = {url: 'https://www.w3schools.com/w3images/avatar3.png'};
+    self.listaComentarios.push({
+    	usuario: {
+    		nome: 'José',
+    		largePicture: {data: fotoJose}
+    	},
+    	texto: 'Porque sair é, muitas vezes, a melhor forma de nos encontrarmos – por mais irônico que possa parecer.'
+    });
 
 	var initMap = function() {
 		var gmaps = document.getElementById('gmaps');
@@ -86,6 +108,20 @@ angular.module('mapApp').controller('myMapsController', function(mapsService) {
         }
 
 	}
+
+	/********* Comentarios **********/
+
+	self.addComentario = function(keyEvent){
+		
+		if (keyEvent.which === 13){
+			self.listaComentarios.push({
+		    	usuario: self.usuarioLogado,
+		    	texto: self.cometario.texto
+		    });
+		}
+	}
+
+	//Fim Comentarios
 
 	initMap();
 	iniciaMarkers();

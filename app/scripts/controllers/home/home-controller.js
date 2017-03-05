@@ -98,6 +98,24 @@ angular.module('mapApp').controller('homeController', function(mapsService, $tim
 		self.map.setZoom(15);	
 	}
 
+
+	/********* Comentarios ********/
+
+	self.listaComentarios = [];
+	var addComentarioPrinc = function (foto, nome, text, mapa){
+		var data = {url: foto};
+		self.listaComentarios.push({
+	    	usuario: {nome: nome},
+	    	largePicture: {data},
+	    	texto: text,
+	    	mapa: mapa
+	    });
+	}
+	addComentarioPrinc('https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/16142748_128470974326892_6285161623078398292_n.jpg?oh=e165258dc173b9c02ba56f131b32457f&oe=592BCE77', 'Nonato', 'É claro que o acompanhamento das preferências de consumo assume importantes posições no estabelecimento do fluxo de informações.', 'img/mapas/saopaulo.png');
+	addComentarioPrinc('https://www.w3schools.com/w3images/avatar2.png', 'Jerfesson', 'Gostaria de enfatizar que o acompanhamento das preferências de consumo acarreta um processo de reformulação e modernização das direções preferenciais no sentido do progresso.', 'img/mapas/beiramar.png');
+	addComentarioPrinc('https://www.w3schools.com/w3images/avatar1.png', 'Iago De Lavor', 'O que temos que ter sempre em mente é que a valorização de fatores subjetivos promove a alavancagem dos procedimentos normalmente adotados.', 'img/mapas/cristo.png');
+
+
 	initMap();
 	iniciaMarkers();
 });
