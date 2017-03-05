@@ -20,6 +20,10 @@ angular.module("mapApp").factory('userService', function(config, $http, $q) {
 		return $http.post(config.baseUrl + 'inserir_usuario.php', user);
 	} 
 
+	var _deleteUser = function(id_usuario){
+		return $http.post(config.baseUrl + 'excluir_usuario.php', {id_usuario});
+	} 
+
 	var _authenticate = function(login){
 		/*return $http.post(config.baseUrl + 'autenticar_usuario.php', 
 			'login='+login.login+'&senha='+login.senha,
@@ -30,6 +34,7 @@ angular.module("mapApp").factory('userService', function(config, $http, $q) {
     return {
     	getUsers: _getUsers,
     	saveUser: _saveUser,
+    	deleteUser: _deleteUser,
     	authenticate: _authenticate,
     	storeUser: _storeUser,
     	getUserFB: _getUserFB

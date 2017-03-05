@@ -1,3 +1,9 @@
+<div ng-show="ulc.mensagem.length" style="background-color: rgba(76, 175, 80, 0.66)!important; margin-top: 10px!important;" class="w3-col s12 m3 w3-panel w3-green w3-round-large w3-right">
+  <span ng-click="ulc.apagaMensagem()" class="w3-closebtn">&times;</span>
+  <h5><center>{{ulc.mensagem}}</center></h5>
+</div>
+
+
 <div class="w3-container">
   <h2 style=" margin-bottom: 0px;">Usuários</h2>
   <div class="w3-row">
@@ -30,7 +36,7 @@
             <button title="Editar" class="w3-btn w3-yellow w3-border w3-border-black w3-round-xlarge">
                 <i class="fa fa-edit"></i>
             </button>
-            <button title="Deletar" class="w3-btn w3-red w3-border w3-border-black w3-round-xlarge " onclick="document.getElementById('id01').style.display='block'">
+            <button title="Deletar" class="w3-btn w3-red w3-border w3-border-black w3-round-xlarge " ng-click="ulc.openModal(usuario)">
                 <i class="fa fa-trash"></i>
             </button>
           </div>
@@ -55,7 +61,7 @@
                  type="button" 
                  class=" w3-border w3-btn w3-teal"
                  title="Adicionar um ponto no mapa"
-                 ng-click="unc.remove()">
+                 ng-click="ulc.removeUsuario()">
               confirmar
               </button>
            </div>
