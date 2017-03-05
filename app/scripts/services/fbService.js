@@ -58,6 +58,34 @@ angular.module("mapApp").factory('facebookService', function($q, config) {
         return deferred.promise;
 	} 
 
+    var _getUserBasic = function () {
+        var deferred = $q.defer();
+        FB.api('/me', {fields: "id,email,name,gender"},
+            function(response) {
+                if (!response || response.error) {
+                    deferred.reject('Error occured');
+                } else {
+                    deferred.resolve(response);
+                }
+            }
+        );
+        return deferred.promise;
+    } 
+
+    var _getUserID = function () {
+        var deferred = $q.defer();
+        FB.api('/me', {fields: "id"},
+            function(response) {
+                if (!response || response.error) {
+                    deferred.reject('Error occured');
+                } else {
+                    deferred.resolve(response);
+                }
+            }
+        );
+        return deferred.promise;
+    } 
+
 	var _getMyLastName = function() {
         var deferred = $q.defer();
         FB.api('/me', { fields: 'last_name' }, 
@@ -93,6 +121,8 @@ angular.module("mapApp").factory('facebookService', function($q, config) {
 
     return {
     	getUser: _getUser,
+        getUserID: _getUserID,
+        getUserBasic: _getUserBasic,
     	getMyLastName: _getMyLastName,
     	notifyObservers: _notifyObservers,
     	getUserPicture: _getUserPicture,

@@ -1,7 +1,19 @@
 angular.module("mapApp").factory('userService', function(config, $http, $q) {
 
+	var _storeUser = function(usuarioLogado){
+		localStorage.setItem("usuarioNome", usuarioLogado.nome);
+		localStorage.setItem("usuarioSexo", usuarioLogado.sexo);
+		localStorage.setItem("usuarioLogin", usuarioLogado.login);
+		localStorage.setItem("usuarioId", usuarioLogado.id_usuario);
+		localStorage.setItem("usuarioFoto", usuarioLogado.largePicture.data.url);
+	}
+
 	var _getUsers = function(){
 		return $http.get(config.baseUrl + 'lista_usuario.php');
+	} 
+
+	var _getUserFB = function(id_face){
+		return $http.post(config.baseUrl + 'consultar_face.php', {id_face});
 	} 
 
 	var _saveUser = function(user){
@@ -18,6 +30,8 @@ angular.module("mapApp").factory('userService', function(config, $http, $q) {
     return {
     	getUsers: _getUsers,
     	saveUser: _saveUser,
-    	authenticate: _authenticate
+    	authenticate: _authenticate,
+    	storeUser: _storeUser,
+    	getUserFB: _getUserFB
     }
 });
