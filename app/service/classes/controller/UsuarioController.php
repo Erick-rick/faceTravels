@@ -135,7 +135,7 @@ class UsuarioController {
 		$usuario = new Usuario();
 		$usuario->setIdFacebook($post['id_face']);
 		if(!$dao->constultarPorIdFace($usuario)){
-			echo 'N&atilde;o encontrado.';
+// 			echo 'N&atilde;o encontrado.';
 			return;
 				
 		}
