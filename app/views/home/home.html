@@ -18,8 +18,28 @@
          <div class="w3-row-padding" style="margin:0 -16px">
             <img src="{{comentario.mapa}}" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
          </div>
+
+         <div ng-repeat="comlogado in comentario.comentarios" >
+            <br>
+            <img src="{{comlogado.usuario.largePicture.data.url}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:40px; height: 40px;">
+            <span class="w3-right w3-opacity">1 min</span>
+            <h4 id='usuario'>{{comlogado.usuario.nome}}</h4>
+            <hr class="w3-clear">
+            <p>{{comlogado.texto}}</p>
+        </div>
+
+        <div ng-show="$root.usuario" >
+          <img ng-show="hc.usuarioLogado.largePicture" ng-src="{{hc.usuarioLogado.largePicture.data.url}}" class="w3-left w3-circle w3-margin-right" style="width:40px; height: 40px;" alt="Avatar">
+
+            <img ng-show="!hc.usuarioLogado.largePicture" src="http://www.w3schools.com/w3images/avatar1.png" class="w3-left w3-circle w3-margin-right" style="width:40px; height: 40px;"  alt="Avatar">
+          <h4 id='usuario'>{{hc.usuarioLogado.nome}}</h4>
+          <input style="margin-top: 15px;" class="w3-input w3-border" type="text" ng-model='hc.cometario.texto' ng-keypress="hc.addComentario($event, $index)">
+          <br>
+        </div>
+        <div ng-show="$root.usuario">
          <button type="button" class="w3-btn w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
          <button type="button" class="w3-btn w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+        </div>
       </div>
       
       
@@ -30,7 +50,7 @@
    <!-- Middle Column -->
    <div class="w3-col m9 s12">
 
-      <div ng-show="hc.mensagem.length" style="background-color: rgba(76, 175, 80, 0.66)!important; margin-top: 0px!important;" class="w3-col s12 m3 w3-panel w3-green w3-round-large w3-right">
+      <div ng-show="hc.mensagem.length" style="background-color: rgba(76, 175, 80, 0.66)!important; margin-top: 10px!important;" class="w3-col s12 m3 w3-panel w3-green w3-round-large w3-right">
         <span ng-click="hc.apagaMensagem()" class="w3-closebtn">&times;</span>
         <h5><center>{{hc.mensagem}}</center></h5>
      </div>

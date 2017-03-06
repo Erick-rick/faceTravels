@@ -111,9 +111,10 @@ angular.module("mapApp").controller("loginController", function($state, $rootSco
 	}
 
 	//Logout
-	$rootScope.logout = function(){
+	/*$rootScope.logout = function(){
 		$rootScope.usuario = null;
 		localStorage.clear();
-	}
+		//$state.go("dashboard.home", {mensagem: 'Até logo! '});
+	}*/
 
 });

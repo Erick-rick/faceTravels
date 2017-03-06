@@ -24,7 +24,7 @@
                <i class="fa fa-envelope"></i>
             </a>
          </li>
-         <li class="w3-hide-small">
+         <li class="w3-hide-small" ng-show="$root.usuario.regra == 'USUARIO_ADM'">
             <a ui-sref="dashboard.usersList" class="w3-padding-large w3-hover-white" title="Usuarios">
                <i class="fa fa-users"></i>
             </a>
@@ -32,25 +32,23 @@
          <li class="w3-hide-small w3-dropdown-hover">
             <a href="#" class="w3-padding-large w3-hover-white" title="Notificações">
                <i class="fa fa-bell"></i>
-               <span class="w3-badge w3-right w3-small w3-green">3</span>
+               <span ng-show="$root.usuario"  class="w3-badge w3-right w3-small w3-green">2</span>
             </a>     
-            <div class="w3-dropdown-content w3-white w3-card-4">
-               <a href="#">Uma nova requisição de amizade</a>
-               <a href="#">John Doe postou no seu mural</a>
-               <a href="#">Jane curtiu seu post</a>
+            <div ng-show="$root.usuario" class="w3-dropdown-content w3-white w3-card-4">
+               <a ui-sref="dashboard.myMaps">Renan comentou seu mapa</a>
+               <a ui-sref="dashboard.myMaps">Jane curtiu seu post</a>
             </div>
          </li>
          <li class="w3-hide-small w3-right w3-dropdown-hover">
             <a ui-sref="dashboard.login" class="w3-padding-large w3-hover-white" title="My Account">
                <img ng-show="$root.usuario.largePicture" ng-src="{{$root.usuario.largePicture.data.url}}" class="w3-circle" style="height:25px;width:25px" alt="Avatar">
 
-               <img ng-show="!$root.usuario.largePicture" src="http://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:25px;width:25px" alt="Avatar">
+               <img ng-show="!$root.usuario.largePicture" src="img/anonymouse.jpg" class="w3-circle" style="height:25px;width:25px" alt="Avatar">
             </a>
             <div class="w3-dropdown-content w3-white w3-card-4" style="right:0">
-               <a ui-sref="dashboard.usersNew">Novo Usuário</a>
-               <a ui-sref="dashboard.myProfile">Meu Perfil</a>
+               <a ng-show="$root.usuario" ui-sref="dashboard.myProfile">Meu Perfil</a>
                <a ng-show="!$root.usuario" ui-sref="dashboard.login">Login</a>
-               <a ng-show="$root.usuario" style="cursor:pointer" ng-click="$root.logout()">Logout</a>
+               <a ng-show="$root.usuario" style="cursor:pointer" ng-click="dc.logout()">Logout</a>
             </div>
          </li>
       </ul>

@@ -1,4 +1,4 @@
-angular.module('mapApp').controller('homeController', function(mapsService, $timeout, $stateParams) {
+angular.module('mapApp').controller('homeController', function(mapsService, $timeout, $stateParams, userService) {
 
 	var self = this;
 
@@ -12,6 +12,10 @@ angular.module('mapApp').controller('homeController', function(mapsService, $tim
 		lng: -47.929
 	}
 	self.mensagem = '';
+
+	self.usuarioLogado = userService.getStoredUser();
+    if(!self.usuarioLogado.nome)
+		self.usuarioLogado.nome = 'Desconhecido';
 
 	var slideIndex = 0;
 
@@ -108,13 +112,25 @@ angular.module('mapApp').controller('homeController', function(mapsService, $tim
 	    	usuario: {nome: nome},
 	    	largePicture: {data},
 	    	texto: text,
-	    	mapa: mapa
+	    	mapa: mapa,
+	    	comentarios: []
 	    });
 	}
 	addComentarioPrinc('https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/16142748_128470974326892_6285161623078398292_n.jpg?oh=e165258dc173b9c02ba56f131b32457f&oe=592BCE77', 'Nonato', 'É claro que o acompanhamento das preferências de consumo assume importantes posições no estabelecimento do fluxo de informações.', 'img/mapas/saopaulo.png');
 	addComentarioPrinc('https://www.w3schools.com/w3images/avatar2.png', 'Jerfesson', 'Gostaria de enfatizar que o acompanhamento das preferências de consumo acarreta um processo de reformulação e modernização das direções preferenciais no sentido do progresso.', 'img/mapas/beiramar.png');
 	addComentarioPrinc('https://www.w3schools.com/w3images/avatar1.png', 'Iago De Lavor', 'O que temos que ter sempre em mente é que a valorização de fatores subjetivos promove a alavancagem dos procedimentos normalmente adotados.', 'img/mapas/cristo.png');
 
+	self.addComentario = function(keyEvent, position){
+		
+		if (keyEvent.which === 13){
+			self.listaComentarios[position].comentarios.push({
+		    	usuario: self.usuarioLogado,
+		    	texto: self.cometario.texto
+		    });
+		}
+	}
+
+	// Fim Comentarios 
 
 	initMap();
 	iniciaMarkers();

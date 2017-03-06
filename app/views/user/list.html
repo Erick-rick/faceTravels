@@ -11,7 +11,7 @@
       <p>Todos os usuários do facetravels</p>
     </div>
     <div class="w3-col s2">
-      <a ui-sref="dashboard.usersNew" title="Novo" class="w3-btn w3-teal w3-border w3-border-black w3-round-xlarge w3-right">
+      <a ui-sref="dashboard.usersNew" title="Novo" class="w3-btn w3-teal w3-border  w3-round-xlarge w3-right">
         Novo
     </a>
     </div>
@@ -35,10 +35,10 @@
         <td>{{usuario.regra}}</td>
         <td>
           <div class="w3-bar w3-right">
-            <button title="Editar" class="w3-btn w3-yellow w3-border w3-border-black w3-round-xlarge">
+            <button title="Mudar Permissão" class="w3-btn w3-yellow w3-border w3-round-xlarge" ng-click="ulc.openModalPermissao(usuario)">
                 <i class="fa fa-edit"></i>
             </button>
-            <button title="Deletar" class="w3-btn w3-red w3-border w3-border-black w3-round-xlarge " ng-click="ulc.openModal(usuario)">
+            <button title="Deletar" class="w3-btn w3-red w3-border w3-round-xlarge " ng-click="ulc.openModalRemover(usuario)">
                 <i class="fa fa-trash"></i>
             </button>
           </div>
@@ -62,8 +62,29 @@
               <button
                  type="button" 
                  class=" w3-border w3-btn w3-teal"
-                 title="Adicionar um ponto no mapa"
                  ng-click="ulc.removeUsuario()">
+              confirmar
+              </button>
+           </div>
+        </div>
+     </div>
+  </div>
+
+<!-- MODAL PERMISSAO -->
+  <div id="id02" class="w3-modal">
+     <div class="w3-modal-content w3-card-8 w3-animate-zoom" style="max-width:700px">
+        <header class="w3-container w3-teal">
+           <h4>Deseja Realmente Tornar o Usuário Admin?</h4>
+        </header>
+        
+
+        <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+           <div class="w3-right">
+              <button onclick="document.getElementById('id02').style.display='none'" type="button" class="w3-btn w3-red w3-border">cancelar</button>
+              <button
+                 type="button" 
+                 class=" w3-border w3-btn w3-teal"
+                 ng-click="ulc.tornarAdmin()">
               confirmar
               </button>
            </div>

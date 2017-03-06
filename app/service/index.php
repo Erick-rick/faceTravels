@@ -10,7 +10,12 @@
 		<input type="text" name="senha" />
 		<input type="submit" name="Enviar" />
 	</form>
+	<?php 
 	
+	echo 'Teste<br>';
+	echo substr('aa',0,1);
+	
+	?>
 	
 	<h1>Autenticar</h1>
 	<form action="autenticar_usuario.php" method="post">

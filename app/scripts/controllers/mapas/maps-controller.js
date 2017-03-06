@@ -31,7 +31,7 @@ angular.module('mapApp').controller('myMapsController', function(mapsService, us
     var fotoJose = {url: 'https://www.w3schools.com/w3images/avatar3.png'};
     self.listaComentarios.push({
     	usuario: {
-    		nome: 'José',
+    		nome: 'Renan',
     		largePicture: {data: fotoJose}
     	},
     	texto: 'Porque sair é, muitas vezes, a melhor forma de nos encontrarmos – por mais irônico que possa parecer.'
