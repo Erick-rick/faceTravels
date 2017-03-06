@@ -3,20 +3,25 @@
 
 
 class ComentarioController{
+	private $post;
 	
+	public function ComentarioController(){
+		$json = file_get_contents("php://input");
+		$this->post = json_decode($json, true);
+		
+	}
 	public function cadastrar() {
 	
-		$json = file_get_contents("php://input");
-		$post = json_decode($json, true);
-		if (! (isset ( $post ['id_mapa'] ) && isset ( $post['id_usuario_autor'] ) && isset ( $post['texto'] ))) {
+		
+		if (! (isset ( $this->post ['id_mapa'] ) && isset ( $this->post['id_usuario_autor'] ) && isset ( $this->post['texto'] ))) {
 			echo "Incompleto";
 			return;
 		}
 	
 		$comentario = new Comentario();
-		$comentario->getMapa()->setId($post['id_mapa']);
-		$comentario->getAutor()->setId($post['id_usuario_autor']);
-		$comentario->setTexto($post['texto']);
+		$comentario->getMapa()->setId($this->post['id_mapa']);
+		$comentario->getAutor()->setId($this->post['id_usuario_autor']);
+		$comentario->setTexto($this->post['texto']);
 		
 		$dao = new ComentarioDAO();
 		if ($dao->inserir ( $comentario )) {
@@ -31,18 +36,14 @@ class ComentarioController{
 		
 		$dao = new ComentarioDAO();
 		
-		$json = file_get_contents("php://input");
-		$post = json_decode($json, true);
-		
-		
-		if(!isset($post['id_mapa'])){
+		if(!isset($this->post['id_mapa'])){
 				
 			$lista = $dao->retornaLista ();
 		}
 		else{
 				
 			$mapa = new Mapa();
-			$mapa->setId($post['id_mapa']);
+			$mapa->setId($this->post['id_mapa']);
 			$lista = $dao->retornaListaMapa($mapa);
 			
 		}
