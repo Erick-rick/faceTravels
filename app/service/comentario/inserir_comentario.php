@@ -15,5 +15,7 @@ function __autoload($classe) {
 
 
 
+ComentarioController::cadastrar();
+
 
 ?>
