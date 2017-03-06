@@ -5,7 +5,7 @@ angular.module("mapApp").factory('userService', function(config, $http, $q) {
 		localStorage.setItem("usuarioSexo", usuarioLogado.sexo);
 		localStorage.setItem("usuarioLogin", usuarioLogado.login);
 		localStorage.setItem("usuarioId", usuarioLogado.id_usuario);
-		localStorage.setItem("usuarioPermissao", usuarioLogado.regra);
+		localStorage.setItem("usuarioRegra", usuarioLogado.regra);
 		localStorage.setItem("usuarioFoto", usuarioLogado.largePicture.data.url);
 	}
 
