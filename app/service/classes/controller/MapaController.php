@@ -10,9 +10,6 @@ class MapaController{
 		$json = file_get_contents("php://input");
 		$post = json_decode($json, true);
 		
-		foreach($_POST as $chave => $valor){
-			$post[$chave] = $valor;
-		}
 		
 		
 		if (! (isset ( $post ['id_usuario'] ) && isset ( $post['titulo'] ))) 
@@ -38,7 +35,8 @@ class MapaController{
 		foreach ( $lista as $linha ) {
 			$listaMapas ['mapas'] [] = array (
 					'id_mapa' => $linha->getId(),
-					'titulo' => $linha->getTitulo()
+					'titulo' => $linha->getTitulo(),
+					'id_usuario_dono' => $linha->getDono()->getId()
 						
 						
 			);

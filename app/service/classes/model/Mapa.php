@@ -12,7 +12,7 @@ class Mapa{
 		$this->dono = new Usuario();
 	}
 	public function setId($id){
-		$this->id;
+		$this->id = $id;
 		
 	}
 	public function getId(){

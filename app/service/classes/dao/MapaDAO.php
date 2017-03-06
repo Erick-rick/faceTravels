@@ -39,7 +39,7 @@ class MapaDAO extends DAO
 		}
 		$idMapa = $this->getConexao()->lastInsertId();
 		
-		$sql2 = "INSERT INTO usuario_mapa(id_mapa, id_usuario)
+		$sql2 = "INSERT INTO usuario_mapa(id_mapa, id_usuario_dono)
 				VALUES(:mapa, :usuario)
 				";
 
@@ -73,7 +73,7 @@ class MapaDAO extends DAO
 			$mapa = new Mapa();
 			$mapa->setId($linha['id_mapa']);
 			$mapa->setTitulo($linha['titulo']);
-			
+			$mapa->getDono()->setId($linha['id_usuario']);
 			$lista [] = $mapa;
 		}
 		return $lista;
