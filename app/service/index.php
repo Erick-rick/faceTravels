@@ -32,6 +32,11 @@
 	</form>
 	
 	
+	<form action="mapa/listar_mapas.php" method="post">
+		<input type="text" name="id_usuario_dono" />
+		<input type="submit" name="Enviar" />
+	</form>
+	
 	
 	
 	</body>

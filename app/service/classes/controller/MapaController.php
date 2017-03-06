@@ -4,12 +4,12 @@
 
 class MapaController{
 
-	
+
 	public static function cadastrar(){
 		
 		$json = file_get_contents("php://input");
 		$post = json_decode($json, true);
-		
+
 		
 		
 		if (! (isset ( $post ['id_usuario'] ) && isset ( $post['titulo'] ))) 
@@ -29,8 +29,23 @@ class MapaController{
 		
 	}
 	public static function listar() {
+		
 		$mapaDao = new MapaDAO();
-		$lista = $mapaDao->retornaLista();
+		$json = file_get_contents("php://input");
+		$post = json_decode($json, true);
+
+		
+		if(!isset($post['id_usuario_dono'])){
+			
+			$lista = $mapaDao->retornaLista();
+		}
+		else{
+			
+			$dono = new Usuario();
+			$dono->setId($post['id_usuario_dono']);
+			$lista = $mapaDao->retornaListaUsuario($dono);
+			
+		}
 		$listaMapas ['mapas'] = array ();
 		foreach ( $lista as $linha ) {
 			$listaMapas ['mapas'] [] = array (

@@ -61,23 +61,65 @@ class MapaDAO extends DAO
 		return $this->getConexao()->commit();
 	}
 	
-	public function retornaLista() {
-		$lista = array ();
+	function retornaLista() {
 		$sql = "SELECT * FROM mapa
-				INNER JOIN usuario_mapa 
+				INNER JOIN usuario_mapa
 				ON usuario_mapa.id_mapa = mapa.id_mapa
 				LIMIT 1000";
-		$result = $this->getConexao ()->query ( $sql );
-	
-		foreach ( $result as $linha ) {
-			$mapa = new Mapa();
-			$mapa->setId($linha['id_mapa']);
-			$mapa->setTitulo($linha['titulo']);
-			$mapa->getDono()->setId($linha['id_usuario']);
-			$lista [] = $mapa;
+		$lista = array();
+		try {
+			$db = $this->getConexao();
+			$stmt = $db->query($sql);
+			$dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			
+			foreach($dados as $linha){
+				$mapa = new Mapa();
+				$mapa->setId($linha['id_mapa']);
+				$mapa->setTitulo($linha['titulo']);
+				$mapa->getDono()->setId($linha['id_usuario_dono']);
+				$lista[] = $mapa;
+			}
+			return $lista;
+			
+		} catch(PDOException $e) {
+			echo '{"erro":{"text":'. $e->getMessage() .'}}';
 		}
-		return $lista;
 	}
+	
+	function retornaListaUsuario(Usuario $dono) {
+		
+		$idUsuario = $dono->getId();
+		
+		$sql = "SELECT * FROM mapa
+				INNER JOIN usuario_mapa
+				ON usuario_mapa.id_mapa = mapa.id_mapa
+				WHERE id_usuario_dono = :usuario
+				LIMIT 1000";	
+		$lista = array();
+		try {
+			$db = $this->getConexao();
+			
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("usuario", $idUsuario, PDO::PARAM_STR);
+			$stmt->execute();
+			
+			$dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			foreach($dados as $linha){
+				
+				$mapa = new Mapa();
+				$mapa->setId($linha['id_mapa']);
+				$mapa->setTitulo($linha['titulo']);
+				$mapa->getDono()->setId($linha['id_usuario_dono']);
+				$lista[] = $mapa;
+			}
+			return $lista;
+		} catch(PDOException $e) {
+			echo '{"erro":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+	
+	
+	
 	
 }
 
