@@ -60,6 +60,24 @@ class MapaDAO extends DAO
 	
 	}
 	
+	public function retornaLista() {
+		$lista = array ();
+		$sql = "SELECT * FROM mapa
+				INNER JOIN usuario_mapa 
+				ON usuario_mapa.id_mapa = mapa.id_mapa
+				LIMIT 1000";
+		$result = $this->getConexao ()->query ( $sql );
+	
+		foreach ( $result as $linha ) {
+			$mapa = new Mapa();
+			$mapa->setId($linha['id_mapa']);
+			$mapa->setTitulo($linha['titulo']);
+			
+			$lista [] = $mapa;
+		}
+		return $lista;
+	}
+	
 }
 
 ?>

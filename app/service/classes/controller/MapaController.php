@@ -25,6 +25,21 @@ class MapaController{
 		}
 		
 	}
+	public static function listar() {
+		$mapaDao = new MapaDAO();
+		$lista = $mapaDao->retornaLista();
+		$listaMapas ['mapas'] = array ();
+		foreach ( $lista as $linha ) {
+			$listaMapas ['mapas'] [] = array (
+					'id_mapa' => $linha->getId(),
+					'titulo' => $linha->getTitulo()
+						
+						
+			);
+		}
+		echo json_encode ( $listaMapas );
+	}
+	
 	
 	
 }
