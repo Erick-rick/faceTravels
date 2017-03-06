@@ -31,6 +31,9 @@ class Comentario
 	public function setAutor(Usuario $autor){
 		$this->autor = $autor;
 	}
+	public function getAutor(){
+		return $this->autor;
+	}
 	public function setMapa(Mapa $mapa){
 		$this->mapa = $mapa;
 	}

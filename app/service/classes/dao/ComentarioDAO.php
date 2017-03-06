@@ -13,7 +13,9 @@ class ComentarioDAO extends DAO{
 	}
 	public function inserir(Comentario $comentario){
 	
-		//A fazer
+		$texto = $comentario->getTexto();
+		$data = date("Y-m-d H:i:s");
+		return true;
 	
 	}
 	
