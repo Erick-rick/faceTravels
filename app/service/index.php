@@ -24,6 +24,16 @@
 		<input type="submit" name="Enviar" />
 	</form>
 	
+	<h1>Novo Mapa</h1>
+	<form action="mapa/inserir_mapa.php" method="post">
+		<input type="text" name="id_usuario" />
+		<input type="text" name="titulo" />
+		<input type="submit" name="Enviar" />
+	</form>
+	
+	
+	
+	
 	</body>
 </html>
 

@@ -14,7 +14,6 @@ class MapaDAO extends DAO
 	}
 	
 	public function inserir(Mapa $mapa){
-	
 		$this->getConexao()->beginTransaction();
 		$sql = "INSERT INTO mapa(titulo)
 				VALUES(:titulo)";
@@ -40,24 +39,26 @@ class MapaDAO extends DAO
 		}
 		$idMapa = $this->getConexao()->lastInsertId();
 		
-		$sql = "ISNERT INTO usuario_mapa(id_usuario, id_mapa) 
-				VALUES(:idUsuario, :idMapa)";
+		$sql2 = "INSERT INTO usuario_mapa(id_mapa, id_usuario)
+				VALUES(:mapa, :usuario)
+				";
+
+		
 		try {
-			$stmt = $db->prepare($sql);
-			$stmt->bindParam("idUsuario", $idUsuario, PDO::PARAM_STR);
-			$stmt->bindParam("idMapa", $idMapa, PDO::PARAM_STR);
-			$result = $stmt->execute();
-			if(!$result){
+			$stmt2 = $db->prepare($sql2);
+			$stmt2->bindParam("usuario", $idUsuario, PDO::PARAM_STR);
+			$stmt2->bindParam("mapa", $idMapa, PDO::PARAM_STR);
+			$result2 = $stmt2->execute();
+			
+			if(!$result2){
 				$this->getConexao()->rollBack();
 				return false;
 		
 			}	
-		
 		} catch(PDOException $e) {
 			echo '{"error":{"text":'. $e->getMessage() .'}}';
 		}
-		return true;
-	
+		return $this->getConexao()->commit();
 	}
 	
 	public function retornaLista() {

@@ -9,6 +9,12 @@ class MapaController{
 		
 		$json = file_get_contents("php://input");
 		$post = json_decode($json, true);
+		
+		foreach($_POST as $chave => $valor){
+			$post[$chave] = $valor;
+		}
+		
+		
 		if (! (isset ( $post ['id_usuario'] ) && isset ( $post['titulo'] ))) 
 		{
 			echo "Incompleto";
