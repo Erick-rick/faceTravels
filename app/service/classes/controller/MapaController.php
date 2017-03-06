@@ -13,14 +13,7 @@ class MapaController{
 			}
 		}
 	}
-
 	public function cadastrar(){
-		
-		$json = file_get_contents("php://input");
-		$this->post = json_decode($json, true);
-
-		
-		
 		if (! (isset ( $this->post ['id_usuario'] ) && isset ( $this->post['titulo'] ))) 
 		{
 			echo "Incompleto";
@@ -40,8 +33,6 @@ class MapaController{
 	public function listar() {
 		
 		$mapaDao = new MapaDAO();
-		$json = file_get_contents("php://input");
-		$this->post = json_decode($json, true);
 
 		
 		if(!isset($this->post['id_usuario_dono'])){

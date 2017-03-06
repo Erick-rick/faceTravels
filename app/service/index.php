@@ -32,32 +32,57 @@ function exibirFormulario($arrayCampos, $action){
    <head>
    </head>
 	<body>
-	<h1>Inserir Usuario</h1>
+
 	<?php 
+	$lista['operacao'] = "Inserir Usuario";
+	$lista['campos'] = array('nome', 'login', 'senha');
+	$lista['url'] = 'usuario/inserir_usuario.php';
 	
-	exibirFormulario( array('nome', 'login', 'senha'), 'usuario/inserir_usuario.php');
+	$matriz[] = $lista;
+	
+	$lista['operacao'] = "Autenticar Usuario";
+	$lista['campos'] = array('login', 'senha');
+	$lista['url'] = 'usuario/autenticar_usuario.php';
+	
+	$matriz[] = $lista;
+	
+	$lista['operacao'] = "Listar Usuarios";
+	$lista['campos'] = array();
+	$lista['url'] = 'usuario/listar_usuario.php';
+	
+	$matriz[] = $lista;
+
+	$lista['operacao'] = "Cadastrar Mapa";
+	$lista['campos'] = array('id_usuario','titulo');
+	$lista['url'] = 'mapa/inserir_mapa.php';
+	
+	$matriz[] = $lista;
+	
+	$lista['operacao'] = "Listar Mapas";
+	$lista['campos'] = array('id_usuario_dono');
+	$lista['url'] = 'mapa/listar_mapas.php';
+	
+	$matriz[] = $lista;
+	
+	foreach($matriz as $linha){
+		echo '	<h1>'.$linha['operacao'].'</h1>';
+		if(count($linha['campos']) > 0){
+			exibirFormulario( $linha['campos'], $linha['url']);
+			echo '<br>Campos POST:<br>';
+			foreach($linha['campos'] as $campo){
+				echo $campo.'<br>';
+			}
+		}
+		else{
+			echo $linha['url'];
+		}
+		
+		echo '<hr>';
+		
+	}
 	
 	?>
-
-	<h1>Autenticar</h1>
-	<form action="autenticar_usuario.php" method="post">
-		<input type="text" name="login" />
-		<input type="text" name="senha" />
-		<input type="submit" name="Enviar" />
-	</form>
 	
-	<h1>Novo Mapa</h1>
-	<form action="mapa/inserir_mapa.php" method="post">
-		<input type="text" name="id_usuario" />
-		<input type="text" name="titulo" />
-		<input type="submit" name="Enviar" />
-	</form>
-	
-	
-	<form action="mapa/listar_mapas.php" method="post">
-		<input type="text" name="id_usuario_dono" />
-		<input type="submit" name="Enviar" />
-	</form>
 	
 	
 	
