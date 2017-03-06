@@ -28,9 +28,25 @@ class ComentarioController{
 	
 	
 	public static function listar() {
+		
 		$dao = new ComentarioDAO();
 		
-		$lista = $dao->retornaLista ();
+		$json = file_get_contents("php://input");
+		$post = json_decode($json, true);
+		
+		
+		if(!isset($post['id_mapa'])){
+				
+			$lista = $dao->retornaLista ();
+		}
+		else{
+				
+			$mapa = new Mapa();
+			$mapa->setId($post['id_mapa']);
+			$lista = $dao->retornaListaMapa($mapa);
+			
+		}
+		
 		$listaComentarios['comentarios'] = array ();
 		foreach ( $lista as $linha ) {
 			$listaComentarios['comentarios'] [] = array (

@@ -62,5 +62,37 @@ class ComentarioDAO extends DAO{
 			echo '{"erro":{"text":'. $e->getMessage() .'}}';
 		}
 	}
+
+	function retornaListaMapa(Mapa $mapa) {
+		$sql = "SELECT * FROM comentario
+				INNER JOIN usuario
+				ON usuario.id_usuario = comentario.id_usuario_autor
+				WHERE id_mapa = :idMapa
+				LIMIT 1000";
+		$idMapa = $mapa->getId();
+		$lista = array();
+		try {
+			$db = $this->getConexao();
+			$stmt = $db->prepare($sql);
+			$stmt->bindParam("idMapa", $idMapa, PDO::PARAM_STR);
+			$stmt->execute();
+				
+			$dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	
+			foreach($dados as $linha){
+				$comentario = new Comentario();
+				$comentario->setId($linha['id_comentario']);
+				$comentario->setData($linha['data']);
+				$comentario->getMapa()->setId($linha['id_mapa']);
+				$comentario->getAutor()->setId($linha['id_usuario_autor']);
+	
+				$lista[] = $comentario;
+			}
+			return $lista;
+	
+		} catch(PDOException $e) {
+			echo '{"erro":{"text":'. $e->getMessage() .'}}';
+		}
+	}
 	
 }
