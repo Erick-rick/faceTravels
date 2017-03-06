@@ -4,7 +4,7 @@
 
 class ComentarioController{
 	
-	public static function cadastrar() {
+	public function cadastrar() {
 	
 		$json = file_get_contents("php://input");
 		$post = json_decode($json, true);
@@ -27,7 +27,7 @@ class ComentarioController{
 	}
 	
 	
-	public static function listar() {
+	public function listar() {
 		
 		$dao = new ComentarioDAO();
 		

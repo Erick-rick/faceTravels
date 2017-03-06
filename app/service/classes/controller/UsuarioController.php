@@ -4,13 +4,18 @@
 class UsuarioController {
 	
 	
-	public static function cadastrar() {
+	public function cadastrar() {
 		
 		$json = file_get_contents("php://input");
 		$post = json_decode($json, true);
+		
+		if($_SERVER['HTTP_HOST'] == "localhost"){
+			foreach($_POST as $chave => $valor){
+				$post[$chave] = $valor;
+			}
+		}
+		
 		if (! (isset ( $post ['nome'] ) && isset ( $post['login'] ) && isset ( $post['senha'] ))) {
-			
-			
 			echo "Incompleto";
 			return;
 		}
@@ -33,7 +38,7 @@ class UsuarioController {
 			echo "Fracasso";
 		}
 	}
-	public static function logar() {
+	public function logar() {
 		$json = file_get_contents("php://input");
 		$post = json_decode($json, true);
 		if(!(isset($post['login']) && isset($post['senha']))){
@@ -63,7 +68,7 @@ class UsuarioController {
 		
 		
 	}
-	public static function excluirUsuario() {
+	public function excluirUsuario() {
 		$json = file_get_contents("php://input");
 		$post = json_decode($json, true);
 		if (!isset ( $post ['id_usuario'] ))
@@ -82,7 +87,7 @@ class UsuarioController {
 		}
 		
 	}
-	public static function tornarAdmin() {
+	public function tornarAdmin() {
 		$json = file_get_contents("php://input");
 		$post = json_decode($json, true);
 		if (!isset ( $post ['id_usuario'] ))
@@ -104,7 +109,7 @@ class UsuarioController {
 	}
 	
 	
-	public static function listar() {
+	public function listar() {
 		$usuarioDao = new UsuarioDAO ();
 		$lista = $usuarioDao->retornaLista ();
 		$listaUsuarios ['usuarios'] = array ();

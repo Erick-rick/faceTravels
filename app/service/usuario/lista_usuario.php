@@ -13,7 +13,7 @@ function __autoload($classe) {
 						include_once '../classes/view/' . $classe . '.php';
 }
 
-
-UsuarioController::listar();
+$controller = new UsuarioController();
+$controller->listar();
 
 ?>

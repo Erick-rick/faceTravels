@@ -14,9 +14,7 @@ function __autoload($classe) {
 }
 
 
-
-MapaController::listar();
-
-
+$controller = new MapaController();
+$controller->listar();
 
 ?>

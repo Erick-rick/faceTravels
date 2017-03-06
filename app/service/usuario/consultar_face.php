@@ -14,6 +14,7 @@ function __autoload($classe) {
 }
 
 
-UsuarioController::consultarPorIdFace();
+$controller = new UsuarioController();
+$controller->consultarPorIdFace();
 
 ?>

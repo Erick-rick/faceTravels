@@ -11,10 +11,9 @@
 		<input type="submit" name="Enviar" />
 	</form>
 	<?php 
-	
-	echo 'Teste<br>';
-	echo substr('aa',0,1);
-	
+	if($_SERVER['HTTP_HOST'] == "localhost"){
+		echo 'Eh local';
+	}	
 	?>
 	
 	<h1>Autenticar</h1>

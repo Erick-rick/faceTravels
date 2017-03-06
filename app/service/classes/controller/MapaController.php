@@ -5,7 +5,7 @@
 class MapaController{
 
 
-	public static function cadastrar(){
+	public function cadastrar(){
 		
 		$json = file_get_contents("php://input");
 		$post = json_decode($json, true);
@@ -28,7 +28,7 @@ class MapaController{
 		}
 		
 	}
-	public static function listar() {
+	public function listar() {
 		
 		$mapaDao = new MapaDAO();
 		$json = file_get_contents("php://input");

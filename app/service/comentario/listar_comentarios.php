@@ -14,8 +14,7 @@ function __autoload($classe) {
 }
 
 
-
-ComentarioController::listar();
-
+$controller = new ComentarioController();
+$controller->listar();
 
 ?>

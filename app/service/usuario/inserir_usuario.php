@@ -14,8 +14,7 @@ function __autoload($classe) {
 }
 
 
-
-UsuarioController::cadastrar();
-
+$controller = new UsuarioController();
+$controller->cadastrar();
 
 ?>

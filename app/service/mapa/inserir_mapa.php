@@ -14,9 +14,8 @@ function __autoload($classe) {
 }
 
 
-
-MapaController::cadastrar();
-
+$controller = new MapaController();
+$controller->cadastrar();
 
 
 ?>

@@ -14,8 +14,6 @@ function __autoload($classe) {
 }
 
 
-
-UsuarioController::excluirUsuario();
-
-
+$controller = new UsuarioController();
+$controller->excluirUsuario();
 ?>
