@@ -11,6 +11,10 @@ class Comentario
 	private $data;
 	
 	
+	public function setId($id){
+		$this->id = $id;
+	}
+	
 	
 }
 
