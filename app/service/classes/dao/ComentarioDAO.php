@@ -35,4 +35,32 @@ class ComentarioDAO extends DAO{
 	
 	}
 	
+
+	function retornaLista() {
+		$sql = "SELECT * FROM comentario
+				INNER JOIN usuario 
+				ON usuario.id_usuario = comentario.id_usuario_autor
+				LIMIT 1000";
+		$lista = array();
+		try {
+			$db = $this->getConexao();
+			$stmt = $db->query($sql);
+			$dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+				
+			foreach($dados as $linha){
+				$comentario = new Comentario();
+				$comentario->setId($linha['id_comentario']);
+				$comentario->setData($linha['data']);
+				$comentario->getMapa()->setId($linha['id_mapa']);
+				$comentario->getAutor()->setId($linha['id_usuario_autor']);
+				
+				$lista[] = $comentario;
+			}
+			return $lista;
+				
+		} catch(PDOException $e) {
+			echo '{"erro":{"text":'. $e->getMessage() .'}}';
+		}
+	}
+	
 }
