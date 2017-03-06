@@ -8,6 +8,11 @@ class ComentarioController{
 	public function ComentarioController(){
 		$json = file_get_contents("php://input");
 		$this->post = json_decode($json, true);
+		if($_SERVER['HTTP_HOST'] == "localhost"){
+			foreach($_POST as $chave => $valor){
+				$this->post[$chave] = $valor;
+			}
+		}
 		
 	}
 	public function cadastrar() {

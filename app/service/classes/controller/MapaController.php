@@ -3,23 +3,32 @@
 
 
 class MapaController{
-
+	private $post;
+	public function MapaController(){
+		$json = file_get_contents("php://input");
+		$this->post = json_decode($json, true);
+		if($_SERVER['HTTP_HOST'] == "localhost"){
+			foreach($_POST as $chave => $valor){
+				$this->post[$chave] = $valor;
+			}
+		}
+	}
 
 	public function cadastrar(){
 		
 		$json = file_get_contents("php://input");
-		$post = json_decode($json, true);
+		$this->post = json_decode($json, true);
 
 		
 		
-		if (! (isset ( $post ['id_usuario'] ) && isset ( $post['titulo'] ))) 
+		if (! (isset ( $this->post ['id_usuario'] ) && isset ( $this->post['titulo'] ))) 
 		{
 			echo "Incompleto";
 			return;
 		}
 		$mapa = new Mapa();
-		$mapa->getDono()->setId($post['id_usuario']);
-		$mapa->setTitulo($post['titulo']);
+		$mapa->getDono()->setId($this->post['id_usuario']);
+		$mapa->setTitulo($this->post['titulo']);
 		$dao = new MapaDAO();
 		if($dao->inserir($mapa)){
 			echo 'Sucesso';
@@ -32,17 +41,17 @@ class MapaController{
 		
 		$mapaDao = new MapaDAO();
 		$json = file_get_contents("php://input");
-		$post = json_decode($json, true);
+		$this->post = json_decode($json, true);
 
 		
-		if(!isset($post['id_usuario_dono'])){
+		if(!isset($this->post['id_usuario_dono'])){
 			
 			$lista = $mapaDao->retornaLista();
 		}
 		else{
 			
 			$dono = new Usuario();
-			$dono->setId($post['id_usuario_dono']);
+			$dono->setId($this->post['id_usuario_dono']);
 			$lista = $mapaDao->retornaListaUsuario($dono);
 			
 		}

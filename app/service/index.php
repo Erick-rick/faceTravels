@@ -4,7 +4,7 @@
    </head>
 	<body>
 	<h1>Inserir Usuario</h1>
-	<form action="inserir_usuario.php" method="post">
+	<form action="usuario/inserir_usuario.php" method="post">
 		<input type="text" name="nome" />
 		<input type="text" name="login" />
 		<input type="text" name="senha" />
