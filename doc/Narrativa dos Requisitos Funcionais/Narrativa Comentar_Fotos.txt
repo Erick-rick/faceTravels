@@ -1,0 +1,10 @@
+Caso de Uso: Comentar Fotos
+Ator: Usuário Logado
+
+Fluxo Principal
+
+1. Ator clica em alguma foto 
+2. Sistema mostra a foto em destaque
+3. Ator escreve na área de comentários
+4. Sistema adiciona o comentário do Ator na lista de comentários
+
