@@ -18,6 +18,7 @@ class ComentarioDAO extends DAO{
 		$texto = $comentario->getTexto();
 		$idMapa = $comentario->getMapa()->getId();
 		$usuarioAutor = $comentario->getAutor()->getId();
+		date_default_timezone_set('America/Sao_Paulo');
 		$data = date("Y-m-d H:i:s");
 		try {
 			$db = $this->getConexao();

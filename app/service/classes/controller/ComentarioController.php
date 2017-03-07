@@ -63,7 +63,7 @@ class ComentarioController{
 					'data' => $linha->getData()
 			);
 		}
-		echo json_encode ( $usuarios );
+		echo json_encode ( $listaComentarios );
 	}
 	
 }
