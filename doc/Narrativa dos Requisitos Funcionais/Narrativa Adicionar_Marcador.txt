@@ -1,0 +1,21 @@
+Caso de Uso: Adicionar Marcador
+Ator: Usuário Logado
+
+Fluxo Principal
+
+1.O Ator inicia o caso de uso
+2.O sistema pede a localização do Marcador
+3.O Ator fornece a localização do Marcador [fa01]
+4.O sistema pede a foto para ser colocada no Marcador
+5.O Ator fornece uma foto [fa02]
+6.O sistema pergunta se o ator deseja adicionar um comentário
+7.O Ator escreve, ou não.
+8.O sistema adiciona o marcador no mapa de visualização
+
+[fa01]
+3.a localização não disponível ou inválida
+4.a O sistema cancela a adição de um marcador e retorna à página HOME
+
+[fa02]
+5.a Extensão da foto é incompatível
+6.a O sistema cancela a adição de um marcador e retorna à página HOME

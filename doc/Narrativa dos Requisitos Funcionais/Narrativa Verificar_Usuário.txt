@@ -1,0 +1,10 @@
+Caso de Uso: Adicionar Marcador
+Ator: Admin
+
+Fluxo Principal
+
+1. Administrador recebe denuncia de usuário
+2. Sistema manda link do perfil do usuário denunciado
+3. Administrador requisita o log de eventos do usuário
+4. Sistema mostra fotos e comentários escritos pelo usuário
+5. Administrador acata ou não a denuncia

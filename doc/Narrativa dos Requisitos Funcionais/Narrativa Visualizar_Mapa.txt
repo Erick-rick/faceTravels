@@ -1,0 +1,11 @@
+Caso de Uso: Visualizar e interagir com Mapa
+Ator: Usuário, Usuário Logado e Admin
+
+Fluxo principal
+
+1. Ator entra na homepage do site Facetravels
+2. Sistema mostra o mapa de fotos dos usuários
+3. Ator pesquisa algum lugar no mapa
+4. Sistema mostra as fotos publicadas daquele lugar pelos Usuários
+
+

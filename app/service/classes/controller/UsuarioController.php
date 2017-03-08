@@ -2,28 +2,32 @@
 
 
 class UsuarioController {
-	
-	
-	public static function cadastrar() {
-		
+	private $post;
+	public function UsuarioController(){
 		$json = file_get_contents("php://input");
-		$post = json_decode($json, true);
-		if (! (isset ( $post ['nome'] ) && isset ( $post['login'] ) && isset ( $post['senha'] ))) {
-			
-			
+		$this->post = json_decode($json, true);
+		if($_SERVER['HTTP_HOST'] == "localhost"){
+			foreach($_POST as $chave => $valor){
+				$this->post[$chave] = $valor;
+			}
+		}
+	}
+	public function cadastrar() {
+		
+		if (! (isset ( $this->post ['nome'] ) && isset ( $this->post['login'] ) && isset ( $this->post['senha'] ))) {
 			echo "Incompleto";
 			return;
 		}
 		
 		$usuario = new Usuario ();
-		$usuario->setNome ( $post ['nome'] );
-		$usuario->setLogin ( $post ['login'] );
-		$usuario->setSenha ( $post ['senha'] );
-		if(isset($post['id_face'])){
-			$usuario->setIdFacebook($post['id_face']);
+		$usuario->setNome ( $this->post ['nome'] );
+		$usuario->setLogin ( $this->post ['login'] );
+		$usuario->setSenha ( $this->post ['senha'] );
+		if(isset($this->post['id_face'])){
+			$usuario->setIdFacebook($this->post['id_face']);
 		}
-		if(isset($post['sexo'])){
-			$usuario->setSexo($post['sexo']);
+		if(isset($this->post['sexo'])){
+			$usuario->setSexo($this->post['sexo']);
 		}
 		
 		$usuarioDao = new UsuarioDAO ();
@@ -33,17 +37,15 @@ class UsuarioController {
 			echo "Fracasso";
 		}
 	}
-	public static function logar() {
-		$json = file_get_contents("php://input");
-		$post = json_decode($json, true);
-		if(!(isset($post['login']) && isset($post['senha']))){
+	public function logar() {
+		if(!(isset($this->post['login']) && isset($this->post['senha']))){
 			echo "Incompleto";
 			return;
 		}
 		$usuarioDao = new UsuarioDAO();
 		$usuario = new Usuario();
-		$usuario->setLogin($post['login']);
-		$usuario->setSenha($post['senha']);
+		$usuario->setLogin($this->post['login']);
+		$usuario->setSenha($this->post['senha']);
 
 		if($usuarioDao->autenticar($usuario)){
 			$vUsuario[] = array (
@@ -52,7 +54,9 @@ class UsuarioController {
 					'login' => $usuario->getLogin (),
 					'senha' => $usuario->getSenha (),
 					'id_facebook' => $usuario->getIdFacebook (),
-					'sexo' => $usuario->getSexo()
+					'sexo' => $usuario->getSexo(), 
+					'regra' => $usuario->getStrRegra() 
+					
 			);
 			echo json_encode ($vUsuario);
 			return;
@@ -61,16 +65,14 @@ class UsuarioController {
 		
 		
 	}
-	public static function excluirUsuario() {
-		$json = file_get_contents("php://input");
-		$post = json_decode($json, true);
-		if (!isset ( $post ['id_usuario'] ))
+	public function excluirUsuario() {
+		if (!isset ( $this->post ['id_usuario'] ))
 		{
 			echo "Incompleto";
 			return;
 		}
 		$usuario = new Usuario();
-		$usuario->setId($post['id_usuario']);
+		$usuario->setId($this->post['id_usuario']);
 		$usuarioDao = new UsuarioDAO ();
 		if($usuarioDao->excluir($usuario)){
 			echo "sucesso!";
@@ -80,16 +82,14 @@ class UsuarioController {
 		}
 		
 	}
-	public static function tornarAdmin() {
-		$json = file_get_contents("php://input");
-		$post = json_decode($json, true);
-		if (!isset ( $post ['id_usuario'] ))
+	public function tornarAdmin() {
+		if (!isset ( $this->post ['id_usuario'] ))
 		{
 			echo "Incompleto";
 			return;
 		}
 		$usuario = new Usuario();
-		$usuario->setId($post['id_usuario']);
+		$usuario->setId($this->post['id_usuario']);
 		$usuario->setRegra(Usuario::USUARIO_ADM);
 		$usuarioDao = new UsuarioDAO ();
 		if($usuarioDao->alterarRegra($usuario)){
@@ -102,7 +102,7 @@ class UsuarioController {
 	}
 	
 	
-	public static function listar() {
+	public function listar() {
 		$usuarioDao = new UsuarioDAO ();
 		$lista = $usuarioDao->retornaLista ();
 		$listaUsuarios ['usuarios'] = array ();
@@ -122,16 +122,14 @@ class UsuarioController {
 		echo json_encode ( $usuarios );
 	}
 	public static function consultarUsuario(){
-		$json = file_get_contents("php://input");
-		$post = json_decode($json, true);
-		if(!isset($post['id_usuario']))
+		if(!isset($this->post['id_usuario']))
 		{
 			echo "Incompleto";
 			return;
 		}		
 		$dao = new UsuarioDAO();
 		$usuario = new Usuario();
-		$usuario->setId($post['id_usuario']);
+		$usuario->setId($this->post['id_usuario']);
 		if(!$dao->constultarPorId($usuario)){
 			echo 'N&atilde;o encontrado.';
 			return;
@@ -149,16 +147,14 @@ class UsuarioController {
 	}
 	
 	public static function consultarPorIdFace(){
-		$json = file_get_contents("php://input");
-		$post = json_decode($json, true);
-		if(!isset($post['id_face']))
+		if(!isset($this->post['id_face']))
 		{
 			echo "Incompleto";
 			return;
 		}
 		$dao = new UsuarioDAO();
 		$usuario = new Usuario();
-		$usuario->setIdFacebook($post['id_face']);
+		$usuario->setIdFacebook($this->post['id_face']);
 		if(!$dao->constultarPorIdFace($usuario)){
 // 			echo 'N&atilde;o encontrado.';
 			return;

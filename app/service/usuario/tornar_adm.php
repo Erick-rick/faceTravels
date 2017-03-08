@@ -15,5 +15,7 @@ function __autoload($classe) {
 
 
 
+$controller = new UsuarioController();
+$controller->tornarAdmin();
 
-UsuarioController::tornarAdmin();
+?>

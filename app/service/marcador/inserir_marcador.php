@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 function __autoload($classe) {
 	if (file_exists ( '../classes/dao/' . $classe . '.php' ))
@@ -14,7 +14,4 @@ function __autoload($classe) {
 }
 
 
-$controller = new UsuarioController();
-$controller->consultarPorIdFace();
 
-?>

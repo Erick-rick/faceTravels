@@ -13,9 +13,7 @@ function __autoload($classe) {
 						include_once '../classes/view/' . $classe . '.php';
 }
 
-
-
-UsuarioController::logar();
-
+$controller = new UsuarioController();
+$controller->logar();
 
 ?>

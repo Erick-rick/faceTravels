@@ -180,6 +180,7 @@ class UsuarioDAO extends DAO{
 			$usuario->setSenha($linha['senha']);
 			$usuario->setIdFacebook($linha['id_facebook']);
 			$usuario->setSexo($linha['sexo']);
+			$usuario->setRegra($linha['id_regra']);
 			return true;
 		}
 		return false;

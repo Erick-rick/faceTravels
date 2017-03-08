@@ -1,0 +1,7 @@
+Caso de Uso: Visualizar Comentários
+Atores: Usuário, Usuário Logado e Admin
+
+Fluxo Principal:
+1. Ator clica em algum marcador/foto
+2. Sistema abre a foto, e carrega os comentários
+3. Ator visualiza os comentários
