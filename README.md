@@ -1,17 +1,21 @@
 # Projeto de Engenharia de Software
-Sistema utilizando Angularjs, Google maps API e servidor Nodejs
+
+## Descrição do Sistema:
+
+O Sistema foi desenvolvido utilizando Angularjs, Google maps API, Facebook Api, PHP e mySql. Durante o desenvolvimento, o Front end foi implementado com o servidor nodejs; o Backend num servidor apache. O arquivo de configuração pode ser encontrado em scripts, config.js. 
+
 
 ## Objetivos:
 
 Projetar um sistema de visualização geoespacial. Além das atividades relacionadas à simples visualização dos
-dados, feita por usuário anônimos, lembre-se que um sistema completo pode ter operações adicionais, como
+dados, feita por usuário anônimos, um sistema completo pode ter operações adicionais, como
 alimentação de dados, fazer comentários, registrar-se, gerar alertas para usuários interessados em algum evento,
 etc. Importante prever diferentes tipos de usuários – administrador, usuários anônimos, que apenas visualizam
 dados básicos, usuários registrados, que têm acesso a uma massa maior de dados, usuários VIPs (pagantes?), que
 podem visualizar dados especiais, etc. 
 
 
-## A especificação do projeto deve conter, pelo menos, os seguintes entregáveis descriminados a seguir:
+### A especificação do projeto contém, os seguintes entregáveis descriminados a seguir:
 1. Elaborar o documento de especificação de requisitos com base no modelo disponibilizado pelo professor (baseado no Documento de Requisitos do RUP).
 
 2. Desenvolver os casos de uso do sistema.
